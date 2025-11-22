@@ -77,6 +77,10 @@ function curlRequest(url, headers, retry = 3) {
 // Playlist route
 router.get("/tracks-v1a1/:id/mono.m3u8", async (req, res) => {
     const id = req.params.id;
+    res.setHeader("Access-Control-Allow-Origin", "*");
+res.setHeader("Access-Control-Allow-Headers", "*");
+res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+
     const token = generateToken();
     const playlistURL = `${baseServer}?id=${encodeURIComponent(id)}&token=${token}`;
 
