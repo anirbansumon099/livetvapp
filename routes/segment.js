@@ -65,6 +65,10 @@ function curlRequest(url, headers, retry = 3) {
 // Segment route
 router.get("/tracks-v1a1/_:seg.ts", async (req, res) => {
     const seg = req.params.seg;
+    res.setHeader("Access-Control-Allow-Origin", "*");
+res.setHeader("Access-Control-Allow-Headers", "*");
+res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+
     const token = generateToken();
     const segURL = `${baseServer}?file=${encodeURIComponent(seg)}&token=${token}`;
 
