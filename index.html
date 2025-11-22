@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live TV Server Info</title>
+
+<style>
+body { font-family: Arial, sans-serif; background:#0d1117; color:#fff; margin:0; padding:0; }
+header { background:#161b22; padding:1rem 2rem; display:flex; justify-content:space-between; align-items:center; }
+header h1 { color:#ff4500; }
+main { display:grid; grid-template-columns:1fr; gap:2rem; padding:2rem; max-width:1000px; margin:auto; }
+section { background:#161b22; padding:1rem 1.5rem; border-radius:10px; }
+section h2 { color:#ff6347; margin-bottom:0.8rem; }
+
+#player-section video { width:100%; max-height:400px; border-radius:10px; background:#000; }
+
+.channel-card { background:#222; padding:0.5rem; border-radius:8px; margin-bottom:0.5rem; }
+.channel-card span { display:block; font-size:0.9rem; }
+
+footer { background:#161b22; padding:1rem 2rem; text-align:center; color:#aaa; font-size:0.9rem; margin-top:2rem; }
+</style>
+</head>
+<body>
+
+<header>
+    <h1>🔥 Live TV Server Info</h1>
+</header>
+
+<main>
+
+<!-- Server Info -->
+<section id="server-info">
+    <h2>Server Information</h2>
+    <p><strong>Status:</strong> Online ✅</p>
+    <p><strong>Version:</strong> 1.0.0</p>
+    <p><strong>Uptime:</strong> 48 Hours</p>
+    <p><strong>Description:</strong> This live TV server aggregates channels from third-party sources. Channels marked as active will play, deactive channels depend on source server availability.</p>
+</section>
+
+<!-- Developer Info -->
+<section id="developer-info">
+    <h2>Developer Information</h2>
+    <p><strong>Developer:</strong> CoderBoyBD</p>
+    <p><strong>Contact:</strong> <a href="mailto:coderboybd@example.com" style="color:#ff6347;">coderboybd@example.com</a></p>
+    <p><strong>Notes:</strong> The developer does not host the channels; they are fetched from third-party sources.</p>
+</section>
+
+<!-- Channel List -->
+<section id="channels-section">
+    <h2>Channel List (Active / Deactive)</h2>
+    <div id="channels">
+        <!-- JS populates channels -->
+    </div>
+</section>
+
+<!-- Player -->
+<section id="player-section">
+    <h2>Live Player</h2>
+    <video id="player" controls></video>
+    <p style="margin-top:0.5rem; font-size:0.85rem; color:#ccc;">Select an active channel to play. Deactive channels will not stream.</p>
+</section>
+
+</main>
+
+<footer>
+    Developed by: <strong>CoderBoyBD</strong> | All channels are third-party sourced. Server acts as proxy only.
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+<script>
+const player = document.getElementById('player');
+const channelsContainer = document.getElementById('channels');
+
+// Example channels data (active/deactive status)
+const channels = [
+    { name:"Bangla TV", active:true, url:"https://your-vercel-app.vercel.app/tracks-v1a1/98883/index.m3u8" },
+    { name:"Sports TV", active:true, url:"https://your-vercel-app.vercel.app/tracks-v1a1/98884/index.m3u8" },
+    { name:"News 24", active:false, url:"https://your-vercel-app.vercel.app/tracks-v1a1/98885/index.m3u8" },
+    { name:"Music Channel", active:true, url:"https://your-vercel-app.vercel.app/tracks-v1a1/98886/index.m3u8" }
+];
+
+// Populate channel cards with active/deactive info
+channels.forEach(ch=>{
+    const div = document.createElement('div');
+    div.classList.add('channel-card');
+    div.innerHTML = `<strong>${ch.name}</strong> - Status: ${ch.active ? 'Active ✅' : 'Deactive ❌'}`;
+    if(ch.active){
+        div.style.cursor = 'pointer';
+        div.addEventListener('click', ()=>{
+            if(Hls.isSupported()){
+                const hls = new Hls();
+                hls.loadSource(ch.url);
+                hls.attachMedia(player);
+                hls.on(Hls.Events.MANIFEST_PARSED, ()=>player.play());
+            } else if(player.canPlayType('application/vnd.apple.mpegurl')){
+                player.src = ch.url;
+                player.addEventListener('loadedmetadata', ()=>player.play());
+            } else {
+                alert("HLS not supported in this browser.");
+            }
+        });
+    } else {
+        div.style.opacity = '0.6';
+    }
+    channelsContainer.appendChild(div);
+});
+</script>
+
+</body>
+</html>
