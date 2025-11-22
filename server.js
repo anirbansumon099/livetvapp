@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
  // res.send(`<h1>Livetvapp<h1><h3>satring the server </h3> `);
   //res.sendFile('index.html', { root: '.' });
   
-    res.render('index', { title: 'Hello EJS', message: 'Welcome to Node.js + EJS!' });
+    res.render('index.ejs', { title: 'Hello EJS', message: 'Welcome to Node.js + EJS!' });
 
 
   
