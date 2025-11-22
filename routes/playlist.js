@@ -1,6 +1,5 @@
 const express = require("express");
 const axios = require("axios");
-const { encryptText } = require("../utils/encrypt");
 require("dotenv").config();
 
 const router = express.Router();
@@ -31,10 +30,14 @@ const commonHeaders = [
     "Connection: keep-alive"
 ];
 
+// ✅ Fixed token generation
 function generateToken() {
-    return require("crypto").createHash("md5").update(Date.now() + Math.floor(Math.random() * 10000)).digest("hex");
+    const crypto = require("crypto");
+    const seed = (Date.now() + Math.floor(Math.random() * 10000)).toString();
+    return crypto.createHash("md5").update(seed).digest("hex");
 }
 
+// Retry fetch function
 async function curlRequest(url, headers, retry = 3) {
     for (let i = 0; i < retry; i++) {
         try {
@@ -47,6 +50,7 @@ async function curlRequest(url, headers, retry = 3) {
     return false;
 }
 
+// Playlist route
 router.get("/tracks-v1a1/:id/mono.m3u8", async (req, res) => {
     const id = req.params.id;
     const token = generateToken();
@@ -54,8 +58,8 @@ router.get("/tracks-v1a1/:id/mono.m3u8", async (req, res) => {
     const headers = [...commonHeaders, ...headerVariants[Math.floor(Math.random() * headerVariants.length)]];
 
     console.log("[PLAYLIST] Fetching:", playlistURL);
-    const playlist = await curlRequest(playlistURL, headers, 3);
 
+    const playlist = await curlRequest(playlistURL, headers, 3);
     if (!playlist) {
         console.error("[PLAYLIST] Failed to fetch");
         return res.status(500).send("#ERROR: Playlist Fetch Failed\n");
