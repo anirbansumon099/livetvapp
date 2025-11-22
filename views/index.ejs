@@ -2,11 +2,156 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><%= title %></title>
-    <link rel="stylesheet" href="/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Streaming Portal</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f2f5f7;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(90deg, #4facfe, #00f2fe);
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+            font-size: 2.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: -30px auto 50px;
+            padding: 0 20px;
+        }
+
+        /* Card */
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 25px 30px;
+            margin-bottom: 30px;
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h2 {
+            color: #4facfe;
+            margin-top: 0;
+        }
+
+        .card p {
+            line-height: 1.6;
+            margin: 8px 0;
+        }
+
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .active {
+            color: green;
+            font-weight: bold;
+        }
+
+        .inactive {
+            color: red;
+            font-weight: bold;
+        }
+
+        /* Copy button */
+        .copy-btn {
+            display: inline-block;
+            margin-left: 10px;
+            padding: 3px 8px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .copy-btn:hover {
+            background: #2c80c4;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            .card {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1><%= message %></h1>
-    <p>This is rendered using EJS template engine.</p>
+    <header>
+        <div class="header-container">
+            <h1>About Streaming Portal</h1>
+            <p>A professional platform for live streaming with secure access and developer info.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Developer Info -->
+        <section class="card">
+            <h2>Developer Info</h2>
+            <p><strong>Name:</strong> Anirban Sumon</p>
+            <p><strong>Email:</strong> anirban@example.com</p>
+            <p><strong>GitHub:</strong> <a href="https://github.com/anirbansumon099" target="_blank">github.com/anirbansumon099</a></p>
+            <p><strong>Role:</strong> Full Stack Developer</p>
+            <p><strong>Bio:</strong> I am passionate about building modern web applications, working with Node.js, Express, and frontend frameworks to deliver professional solutions.</p>
+        </section>
+
+        <!-- Project / Stream Info -->
+        <section class="card">
+            <h2>Project / Stream Info</h2>
+            <p><strong>Project Name:</strong> Streaming Portal</p>
+            <p><strong>Version:</strong> 1.0.0</p>
+            <p><strong>Stream Server:</strong> <a href="https://stream.example.com" target="_blank">https://stream.example.com</a></p>
+            <p>
+                <strong>Access Key:</strong> 
+                <span id="accessKey">12345-ABCDE</span>
+                <button class="copy-btn" onclick="copyKey()">Copy</button>
+            </p>
+            <p><strong>Status:</strong> <span class="active">Active</span></p>
+        </section>
+    </main>
+
+    <script>
+        // Copy Access Key function
+        function copyKey() {
+            const key = document.getElementById('accessKey').innerText;
+            navigator.clipboard.writeText(key)
+                .then(() => alert('Access Key copied!'))
+                .catch(err => alert('Failed to copy: ' + err));
+        }
+    </script>
 </body>
 </html>
