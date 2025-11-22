@@ -1,8 +1,11 @@
 const express = require("express");
-const axios = require("axios");
-require("dotenv").config();
+const https = require("https");
+const crypto = require("crypto");
+const { URL } = require("url");
 
 const router = express.Router();
+
+const baseServer = process.env.MAIN_SERVER + "/live.php";
 
 const headerVariants = [
     [
@@ -22,46 +25,70 @@ const headerVariants = [
     ]
 ];
 
-const commonHeaders = [
-    "Host: allinonereborn.online",
-    "Accept: */*",
-    "Accept-Language: en-US,en;q=0.5",
-    "Referer: https://allinonereborn.online/airteltv-web/player.html",
-    "Connection: keep-alive"
-];
+const commonHeaders = {
+    "Host": "allinonereborn.online",
+    "Accept": "*/*",
+    "Accept-Language": "en-US,en;q=0.5",
+    "Referer": "https://allinonereborn.online/airteltv-web/player.html",
+    "Connection": "keep-alive"
+};
 
-// ✅ Fixed token generation
+// Token generation (like PHP md5(time() . rand()))
 function generateToken() {
-    const crypto = require("crypto");
     const seed = (Date.now() + Math.floor(Math.random() * 10000)).toString();
     return crypto.createHash("md5").update(seed).digest("hex");
 }
 
-// Retry fetch function
-async function curlRequest(url, headers, retry = 3) {
-    for (let i = 0; i < retry; i++) {
-        try {
-            const res = await axios.get(url, { headers, timeout: 10000 });
-            if (res.status === 200 && res.data && res.data.length > 20) return res.data;
-        } catch (e) {
-            await new Promise(r => setTimeout(r, 200));
-        }
-    }
-    return false;
+// cURL-like fetch
+function curlRequest(url, headers, retry = 3) {
+    return new Promise((resolve) => {
+        let attempts = 0;
+        const requestOnce = () => {
+            attempts++;
+            const urlObj = new URL(url);
+            const lib = urlObj.protocol === "https:" ? https : require("http");
+            const options = {
+                method: "GET",
+                headers,
+                rejectUnauthorized: false
+            };
+
+            const req = lib.request(urlObj, options, res => {
+                let data = "";
+                res.on("data", chunk => data += chunk);
+                res.on("end", () => {
+                    if (res.statusCode === 200 && data.length > 20) return resolve(data);
+                    if (attempts < retry) return setTimeout(requestOnce, 200);
+                    resolve(false);
+                });
+            });
+
+            req.on("error", () => {
+                if (attempts < retry) return setTimeout(requestOnce, 200);
+                resolve(false);
+            });
+
+            req.end();
+        };
+        requestOnce();
+    });
 }
 
 // Playlist route
 router.get("/tracks-v1a1/:id/mono.m3u8", async (req, res) => {
     const id = req.params.id;
     const token = generateToken();
-    const playlistURL = `${process.env.MAIN_SERVER}/live.php?id=${id}`;
-    const headers = [...commonHeaders, ...headerVariants[Math.floor(Math.random() * headerVariants.length)]];
+    const playlistURL = `${baseServer}?id=${encodeURIComponent(id)}&token=${token}`;
+
+    const headers = { ...commonHeaders };
+    const randHeader = headerVariants[Math.floor(Math.random() * headerVariants.length)];
+    headers["User-Agent"] = randHeader[0];
 
     console.log("[PLAYLIST] Fetching:", playlistURL);
 
     const playlist = await curlRequest(playlistURL, headers, 3);
     if (!playlist) {
-        console.error("[PLAYLIST] Failed to fetch");
+        console.error("[PLAYLIST] Fetch failed");
         return res.status(500).send("#ERROR: Playlist Fetch Failed\n");
     }
 
