@@ -4,7 +4,7 @@ const crypto = require("crypto");
 const { URL } = require("url");
 
 const SecureFixedEncoder = require("../utils/SecureFixedEncoder");
-const encoder = new SecureFixedEncoder(undefined, 10);
+
 
 const router = express.Router();
 
@@ -80,6 +80,7 @@ function curlRequest(url, headers, retry = 3) {
 // Playlist route
 router.get("/tracks-v1a1/:id/mono.m3u8", async (req, res) => { 
     const id = req.params.id;
+    const encoder = new SecureFixedEncoder(undefined, 10);
 const decodedId = encoder.decodeid);
 
     res.setHeader("Access-Control-Allow-Origin", "*");
