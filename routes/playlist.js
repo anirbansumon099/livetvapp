@@ -54,7 +54,7 @@ async function curlRequest(url, headers, retry = 3) {
 router.get("/tracks-v1a1/:id/mono.m3u8", async (req, res) => {
     const id = req.params.id;
     const token = generateToken();
-    const playlistURL = `${process.env.MAIN_SERVER}/live.php?id=${encodeURIComponent(id)}&token=${token}`;
+    const playlistURL = `${process.env.MAIN_SERVER}/live.php?id=${id}`;
     const headers = [...commonHeaders, ...headerVariants[Math.floor(Math.random() * headerVariants.length)]];
 
     console.log("[PLAYLIST] Fetching:", playlistURL);
