@@ -1,10 +1,14 @@
 const express = require("express");
 require("dotenv").config();
+const path = require('path');
 const playlistRoute = require("./routes/playlist");
 const segmentRoute = require("./routes/segment");
 
 const app = express();
 //app.use(express.static('.'));
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views')); // views folder path
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use("/", playlistRoute);
