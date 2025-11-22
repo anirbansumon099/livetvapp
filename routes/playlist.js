@@ -3,7 +3,7 @@ const https = require("https");
 const crypto = require("crypto");
 const { URL } = require("url");
 
-const SecureFixedEncoder = require("../utils/SecureFixedEncoder");
+//const SecureFixedEncoder = require("../utils/SecureFixedEncoder");
 
 
 const router = express.Router();
@@ -80,15 +80,59 @@ function curlRequest(url, headers, retry = 3) {
 // Playlist route
 router.get("/tracks-v1a1/:id/mono.m3u8", async (req, res) => { 
     const id = req.params.id;
-    const encoder = new SecureFixedEncoder(undefined, 10);
-const decodedId = encoder.decodeid);
+   // const encoder = new SecureFixedEncoder(undefined, 10);
+//const decodedId = encoder.decodeid);
 
     res.setHeader("Access-Control-Allow-Origin", "*");
 res.setHeader("Access-Control-Allow-Headers", "*");
 res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
 
     const token = generateToken();
-    const playlistURL = `${baseServer}?id=${encodeURIComponent(decodedId)}&token=${token}`;
+    const playlistURL = `${baseServer}?id=${encodeURIComponent(id)}&token=${token}`;
+
+    const headers = { ...commonHeaders };
+    const randHeader = headerVariants[Math.floor(Math.random() * headerVariants.length)];
+    headers["User-Agent"] = randHeader[0];
+
+    console.log("[PLAYLIST] Fetching:", playlistURL);
+
+    const playlist = await curlRequest(playlistURL, headers, 3);
+    if (!playlist) {
+        console.error("[PLAYLIST] Fetch failed");
+        return res.status(500).send("#ERROR: Playlist Fetch Failed\n");
+    }
+
+    const lines = playlist.replace(/\r/g, "").split("\n");
+    let out = "#EXTM3U\n";
+
+    for (let line of lines) {
+        line = line.trim();
+        if (!line) continue;
+        if (line.startsWith("#")) { out += line + "\n"; continue; }
+        if (line.includes("?file=")) {
+            const urlObj = new URL(line, "http://localhost");
+            const file = urlObj.searchParams.get("file");
+            if (file) out += `/tracks-v1a1/_${encodeURIComponent(file)}.ts\n`;
+        }
+    }
+
+    res.setHeader("Content-Type", "application/vnd.apple.mpegurl");
+    res.send(out);
+});
+
+
+
+router.get("/tracks-v1a1/:id/index.m3u8", async (req, res) => { 
+    const id = req.params.id;
+   // const encoder = new SecureFixedEncoder(undefined, 10);
+//const decodedId = encoder.decodeid);
+
+    res.setHeader("Access-Control-Allow-Origin", "*");
+res.setHeader("Access-Control-Allow-Headers", "*");
+res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+
+    const token = generateToken();
+    const playlistURL = `${baseServer}?id=${encodeURIComponent(id)}&token=${token}`;
 
     const headers = { ...commonHeaders };
     const randHeader = headerVariants[Math.floor(Math.random() * headerVariants.length)];
