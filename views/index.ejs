@@ -3,154 +3,347 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - Streaming Portal</title>
+    <title>Streaming Portal - Professional Dashboard</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+
     <style>
-        /* General styles */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f2f5f7;
-            color: #333;
+        :root {
+            --primary-color: #2563eb; /* Modern Blue */
+            --primary-dark: #1e40af;
+            --secondary-bg: #f8fafc;
+            --text-dark: #1e293b;
+            --text-light: #64748b;
+            --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --radius: 16px;
         }
 
-        /* Header */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary-bg);
+            color: var(--text-dark);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Header Section with Glass effect overlay feeling */
         header {
-            background: linear-gradient(90deg, #4facfe, #00f2fe);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             color: white;
+            padding: 80px 20px 100px; /* Extra padding bottom for overlap */
             text-align: center;
-            padding: 50px 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            position: relative;
         }
 
         header h1 {
-            margin: 0 0 10px;
-            font-size: 2.5rem;
+            font-size: 3rem;
+            font-weight: 700;
+            margin: 0;
+            letter-spacing: -1px;
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         header p {
             font-size: 1.1rem;
+            color: #cbd5e1;
+            margin-top: 15px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* Container */
+        /* Container layout */
         .container {
-            max-width: 900px;
-            margin: -30px auto 50px;
+            max-width: 1000px;
+            margin: -60px auto 50px; /* Negative margin creates overlap effect */
             padding: 0 20px;
+            position: relative;
+            z-index: 10;
+            display: grid;
+            gap: 25px;
         }
 
-        /* Card */
+        /* Professional Card Style */
         .card {
-            background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            padding: 25px 30px;
-            margin-bottom: 30px;
-            transition: transform 0.2s ease;
+            background: white;
+            border-radius: var(--radius);
+            box-shadow: var(--card-shadow);
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 15px;
+        }
+
+        .card-header i {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-right: 12px;
+            background: #eff6ff;
+            padding: 10px;
+            border-radius: 10px;
         }
 
         .card h2 {
-            color: #4facfe;
-            margin-top: 0;
+            margin: 0;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            font-weight: 600;
         }
 
-        .card p {
-            line-height: 1.6;
-            margin: 8px 0;
+        /* Info Row Styling */
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .label {
+            font-weight: 500;
+            color: var(--text-light);
+        }
+
+        .value {
+            font-weight: 600;
+            color: var(--text-dark);
+            text-align: right;
         }
 
         a {
-            color: #3498db;
+            color: var(--primary-color);
             text-decoration: none;
+            transition: color 0.2s;
         }
 
         a:hover {
+            color: var(--primary-dark);
             text-decoration: underline;
         }
 
-        .active {
-            color: green;
+        /* Status Badges */
+        .status-badge {
+            padding: 6px 12px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .status-active {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        /* Copy Input Group */
+        .copy-group {
+            display: flex;
+            align-items: center;
+            background: #f1f5f9;
+            padding: 5px 5px 5px 15px;
+            border-radius: 8px;
+            margin-top: 5px;
+        }
+
+        .code-text {
+            font-family: 'Courier New', monospace;
+            margin-right: 10px;
+            color: #334155;
             font-weight: bold;
         }
 
-        .inactive {
-            color: red;
-            font-weight: bold;
-        }
-
-        /* Copy button */
         .copy-btn {
-            display: inline-block;
-            margin-left: 10px;
-            padding: 3px 8px;
-            background: #3498db;
-            color: white;
-            border: none;
-            border-radius: 5px;
+            background: white;
+            border: 1px solid #cbd5e1;
+            color: var(--text-dark);
+            padding: 6px 12px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .copy-btn:hover {
-            background: #2c80c4;
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
         }
 
-        /* Responsive */
-        @media (max-width: 600px) {
-            header h1 {
-                font-size: 2rem;
-            }
-            .card {
-                padding: 20px;
-            }
+        /* Video Player Customization */
+        .video-wrapper {
+            margin-top: 30px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            background: #000;
+        }
+
+        /* Customizing the big play button color */
+        .video-js .vjs-big-play-button {
+            background-color: rgba(37, 99, 235, 0.8); /* Blue transparent */
+            border: none;
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            border-radius: 50%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .video-js .vjs-big-play-button:hover {
+             background-color: rgba(37, 99, 235, 1);
+        }
+
+        /* Responsive tweaks */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2rem; }
+            .container { margin-top: -40px; }
+            .card { padding: 25px; }
+            .info-row { flex-direction: column; align-items: flex-start; gap: 5px; }
+            .value { text-align: left; }
         }
     </style>
 </head>
 <body>
+
     <header>
-        <div class="header-container">
-            <h1>About Streaming Portal</h1>
-            <p>A professional platform for live streaming with secure access and developer info.</p>
+        <div class="header-content">
+            <h1>Streaming Portal</h1>
+            <p>Secure, high-latency live streaming infrastructure dashboard for developers and administrators.</p>
         </div>
     </header>
 
     <main class="container">
-        <!-- Developer Info -->
+        
         <section class="card">
-            <h2>Developer Info</h2>
-            <p><strong>Name:</strong> Anirban Sumon</p>
-            <p><strong>Email:</strong> anirbansumon099@gmail.com</p>
-            <p><strong>GitHub:</strong> <a href="https://github.com/" target="_blank">github.com/</a></p>
-            <p><strong>Role:</strong> Full Stack Developer</p>
-            <p><strong>Bio:</strong> I am passionate about building modern web applications, working with Node.js, Express, and frontend frameworks to deliver professional solutions.</p>
+            <div class="card-header">
+                <i class="fa-solid fa-code"></i>
+                <h2>Developer Profile</h2>
+            </div>
+            
+            <div class="info-row">
+                <span class="label">Name</span>
+                <span class="value">Anirban Sumon</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Role</span>
+                <span class="value">Full Stack Developer</span>
+            </div>
+            <div class="info-row">
+                <span class="label">GitHub</span>
+                <span class="value"><a href="https://github.com/anirbansumon099" target="_blank"><i class="fa-brands fa-github"></i> anirbansumon099</a></span>
+            </div>
+            <div class="info-row">
+                <span class="label">Contact</span>
+                <span class="value">anirban@example.com</span>
+            </div>
+            <div style="margin-top: 15px; font-size: 0.95rem; color: var(--text-light); line-height: 1.6;">
+                Passionate about building modern web applications, working with Node.js, Express, and frontend frameworks to deliver professional solutions.
+            </div>
         </section>
 
-        <!-- Project / Stream Info -->
         <section class="card">
-            <h2>Project / Stream Info</h2>
-            <p><strong>Project Name:</strong> Streaming Portal</p>
-            <p><strong>Version:</strong> 1.0.0</p>
-            <p><strong>Stream Server:</strong> <a href="https://livetvapp.vercel.app/tracks-v1a1/277408/mono.m3u8" target="_blank">link</a></p>
-            <p>
-                <strong>Access Key:</strong> 
-                <span id="accessKey">12345-ABCDE</span>
-                <button class="copy-btn" onclick="copyKey()">Copy</button>
-            </p>
-            <p><strong>Status:</strong> <span class="active">Active</span></p>
+            <div class="card-header">
+                <i class="fa-solid fa-tower-broadcast"></i>
+                <h2>Live Stream Status</h2>
+            </div>
+
+            <div class="info-row">
+                <span class="label">Project Name</span>
+                <span class="value">Live TV App v1.0.0</span>
+            </div>
+            <div class="info-row">
+                <span class="label">Server Status</span>
+                <span class="value"><span class="status-badge status-active"><i class="fa-solid fa-circle-check"></i> Active & Broadcasting</span></span>
+            </div>
+            <div class="info-row">
+                <span class="label">Stream Server</span>
+                <span class="value"><a href="#" target="_blank">stream.example.com</a></span>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <span class="label">Access Token / Key</span>
+                <div class="copy-group">
+                    <span class="code-text" id="accessKey">12345-ABCDE-SECURE-KEY</span>
+                    <button class="copy-btn" onclick="copyKey(this)">
+                        <i class="fa-regular fa-copy"></i> Copy
+                    </button>
+                </div>
+            </div>
+
+            <div class="video-wrapper">
+                <video
+                    id="my-video"
+                    class="video-js vjs-fluid vjs-big-play-centered"
+                    controls
+                    preload="auto"
+                    poster="https://via.placeholder.com/800x450/0f172a/ffffff?text=Live+Stream+Preview" 
+                    data-setup='{}'
+                >
+                    <source src="https://livetvapp.vercel.app/tracks-v1a1/277390/index.m3u8" type="application/x-mpegURL">
+                    
+                    <p class="vjs-no-js">
+                        To view this video please enable JavaScript, and consider upgrading to a
+                        web browser that
+                        <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
+                    </p>
+                </video>
+            </div>
         </section>
+
     </main>
 
+    <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+
     <script>
-        // Copy Access Key function
-        function copyKey() {
-            const key = document.getElementById('accessKey').innerText;
-            navigator.clipboard.writeText(key)
-                .then(() => alert('Access Key copied!'))
-                .catch(err => alert('Failed to copy: ' + err));
+        function copyKey(btnElement) {
+            const keyText = document.getElementById('accessKey').innerText;
+            
+            navigator.clipboard.writeText(keyText).then(() => {
+                // Visual feedback on button
+                const originalContent = btnElement.innerHTML;
+                btnElement.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+                btnElement.style.background = '#22c55e';
+                btnElement.style.color = 'white';
+                btnElement.style.borderColor = '#22c55e';
+
+                // Revert back after 2 seconds
+                setTimeout(() => {
+                    btnElement.innerHTML = originalContent;
+                    btnElement.style.background = 'white';
+                    btnElement.style.color = '#1e293b';
+                    btnElement.style.borderColor = '#cbd5e1';
+                }, 2000);
+            }).catch(err => {
+                alert('Failed to copy text');
+            });
         }
     </script>
 </body>
