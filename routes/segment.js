@@ -30,20 +30,27 @@ const commonHeaders = [
     "Connection: keep-alive"
 ];
 
+// ✅ Fixed token generation
 function generateToken() {
-    return require("crypto").createHash("md5").update(Date.now() + Math.floor(Math.random() * 10000)).digest("hex");
+    const crypto = require("crypto");
+    const seed = (Date.now() + Math.floor(Math.random() * 10000)).toString();
+    return crypto.createHash("md5").update(seed).digest("hex");
 }
 
+// Retry fetch for stream
 async function curlRequest(url, headers, retry = 3) {
     for (let i = 0; i < retry; i++) {
         try {
             const res = await axios.get(url, { headers, responseType: "stream", timeout: 10000 });
             if (res.status === 200) return res.data;
-        } catch (e) { await new Promise(r => setTimeout(r, 200)); }
+        } catch (e) {
+            await new Promise(r => setTimeout(r, 200));
+        }
     }
     return false;
 }
 
+// Segment route
 router.get("/tracks-v1a1/_:seg.ts", async (req, res) => {
     const seg = req.params.seg;
     const token = generateToken();
