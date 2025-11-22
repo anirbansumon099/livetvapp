@@ -13,6 +13,7 @@ function decryptText(encoded) {
         const decrypted = CryptoJS.AES.decrypt({ ciphertext }, SECRET, { iv });
         return decrypted.toString(CryptoJS.enc.Utf8);
     } catch (e) {
+        console.error("Decrypt Error:", e.message);
         return null;
     }
 }
