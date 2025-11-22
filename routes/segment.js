@@ -1,8 +1,11 @@
 const express = require("express");
-const axios = require("axios");
-require("dotenv").config();
+const https = require("https");
+const crypto = require("crypto");
+const { URL } = require("url");
 
 const router = express.Router();
+
+const baseServer = process.env.MAIN_SERVER + "/live.php";
 
 const headerVariants = [
     [
@@ -22,40 +25,52 @@ const headerVariants = [
     ]
 ];
 
-const commonHeaders = [
-    "Host: allinonereborn.online",
-    "Accept: */*",
-    "Accept-Language: en-US,en;q=0.5",
-    "Referer: https://allinonereborn.online/airteltv-web/player.html",
-    "Connection: keep-alive"
-];
+const commonHeaders = {
+    "Host": "allinonereborn.online",
+    "Accept": "*/*",
+    "Accept-Language": "en-US,en;q=0.5",
+    "Referer": "https://allinonereborn.online/airteltv-web/player.html",
+    "Connection": "keep-alive"
+};
 
-// ✅ Fixed token generation
 function generateToken() {
-    const crypto = require("crypto");
     const seed = (Date.now() + Math.floor(Math.random() * 10000)).toString();
     return crypto.createHash("md5").update(seed).digest("hex");
 }
 
-// Retry fetch for stream
-async function curlRequest(url, headers, retry = 3) {
-    for (let i = 0; i < retry; i++) {
-        try {
-            const res = await axios.get(url, { headers, responseType: "stream", timeout: 10000 });
-            if (res.status === 200) return res.data;
-        } catch (e) {
-            await new Promise(r => setTimeout(r, 200));
-        }
-    }
-    return false;
+// Stream fetch
+function curlRequest(url, headers, retry = 3) {
+    return new Promise((resolve) => {
+        let attempts = 0;
+        const requestOnce = () => {
+            attempts++;
+            const urlObj = new URL(url);
+            const lib = urlObj.protocol === "https:" ? https : require("http");
+            const options = { method: "GET", headers, rejectUnauthorized: false };
+            const req = lib.request(urlObj, options, res => {
+                if (res.statusCode === 200) return resolve(res);
+                if (attempts < retry) return setTimeout(requestOnce, 200);
+                resolve(false);
+            });
+            req.on("error", () => {
+                if (attempts < retry) return setTimeout(requestOnce, 200);
+                resolve(false);
+            });
+            req.end();
+        };
+        requestOnce();
+    });
 }
 
 // Segment route
 router.get("/tracks-v1a1/_:seg.ts", async (req, res) => {
     const seg = req.params.seg;
     const token = generateToken();
-    const segURL = `${process.env.MAIN_SERVER}/live.php?file=${encodeURIComponent(seg)}&token=${token}`;
-    const headers = [...commonHeaders, ...headerVariants[Math.floor(Math.random() * headerVariants.length)]];
+    const segURL = `${baseServer}?file=${encodeURIComponent(seg)}&token=${token}`;
+
+    const headers = { ...commonHeaders };
+    const randHeader = headerVariants[Math.floor(Math.random() * headerVariants.length)];
+    headers["User-Agent"] = randHeader[0];
 
     console.log("[SEGMENT] Fetching:", segURL);
 
