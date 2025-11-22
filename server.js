@@ -15,7 +15,7 @@ app.get("/", (req, res) => {
   //res.sendFile("HLS Proxy Server Running"))
   res.sendFile('index.html', { root: '.' });
 });
-};
+
 
 // Start server
 const PORT = process.env.PORT || 3000;
