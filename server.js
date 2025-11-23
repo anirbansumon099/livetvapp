@@ -34,11 +34,7 @@ app.get("/start",(req,res)=>{
 });
 
 
-app.get('/api/data', (req, res) => {
-    fs.readFile('./view/data.json', 'utf8', (err, data) => {
-        if (err) return res.status(500).json({ error: "File read error" });
-        res.json(JSON.parse(data));
-    });});
+
 
 
 app.get("/*", (req,res)=>{
