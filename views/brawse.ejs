@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StreamPro - Browse</title>
+
+<script src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --primary: #ff0055;
+    --accent: #00d2ff;
+    --bg-dark: #0b0b0b;
+    --bg-card: #141414;
+    --text: #ffffff;
+  }
+
+  body { margin: 0; font-family: 'Rajdhani', sans-serif; background: var(--bg-dark); color: var(--text); min-height: 100vh; }
+
+  /* --- Navbar --- */
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 15px 4%; background: #0f0f0f; border-bottom: 1px solid #222;
+    position: sticky; top: 0; z-index: 50; box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+  }
+  .logo { font-size: 26px; font-weight: 700; color: #fff; text-decoration: none;}
+  .logo span { color: var(--primary); }
+  
+  .search-wrapper { position: relative; }
+  .search-wrapper input {
+    background: #000; border: 1px solid #333; padding: 10px 40px 10px 15px;
+    border-radius: 4px; color: #fff; width: 250px; transition: 0.3s;
+    font-family: 'Rajdhani', sans-serif;
+  }
+  .search-wrapper input:focus { border-color: var(--accent); width: 300px; }
+  .search-icon { position: absolute; right: 10px; top: 10px; color: #777; }
+
+  /* --- Ads --- */
+  .ad-slot {
+    width: 100%; max-width: 1000px; margin: 20px auto; min-height: 90px;
+    background: #111; border: 1px dashed #333; display: flex; 
+    align-items: center; justify-content: center; color: #555; font-size: 14px;
+    border-radius: 6px;
+  }
+
+  /* --- Content Area --- */
+  .container { padding: 20px 4%; max-width: 1600px; margin: auto; }
+  
+  .breadcrumb { display: flex; align-items: center; justify-content: space-between; margin-bottom: 25px; }
+  .section-title { font-size: 24px; font-weight: 700; border-left: 4px solid var(--primary); padding-left: 15px; }
+  
+  .back-btn {
+    background: transparent; border: 1px solid #444; color: #fff;
+    padding: 6px 20px; border-radius: 4px; cursor: pointer; display: none;
+    transition: 0.3s; font-weight: 600;
+  }
+  .back-btn:hover { background: var(--primary); border-color: var(--primary); }
+
+  /* --- Grid --- */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+  
+  .card {
+    background: var(--bg-card); border-radius: 8px; overflow: hidden;
+    cursor: pointer; transition: all 0.3s ease; border: 1px solid transparent;
+    position: relative;
+  }
+  .card:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+  
+  .thumb { height: 130px; background-size: cover; background-position: center; position: relative; opacity: 0.8; transition: 0.3s; }
+  .card:hover .thumb { opacity: 1; }
+  
+  .card-info { padding: 15px; }
+  .card-title { font-size: 16px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .card-sub { font-size: 12px; color: #777; margin-top: 5px; }
+
+  /* --- Player Modal --- */
+  #playerModal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.95); z-index: 2000; display: none;
+    flex-direction: column; justify-content: center; align-items: center;
+  }
+  
+  #playerWrapper {
+    width: 85%; max-width: 1100px; aspect-ratio: 16/9; background: #000;
+    box-shadow: 0 0 60px rgba(255, 0, 85, 0.1); border: 1px solid #222; position: relative;
+  }
+
+  /* Layers */
+  #mainPlayer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+  
+  #adLayer {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: #000; z-index: 10; display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+  }
+  #adVideo { width: 100%; height: 100%; object-fit: cover; }
+
+  /* Controls */
+  .close-btn { position: absolute; top: -40px; right: 0; color: #fff; font-size: 30px; cursor: pointer; transition: 0.3s; }
+  .close-btn:hover { color: var(--primary); }
+  
+  .skip-btn {
+    position: absolute; bottom: 80px; right: 30px;
+    background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.2); color: #fff;
+    padding: 10px 25px; cursor: pointer; font-weight: 700; z-index: 20;
+    display: none; text-transform: uppercase; letter-spacing: 1px;
+  }
+  .skip-btn:hover { background: var(--primary); border-color: var(--primary); }
+  
+  .timer-badge {
+    position: absolute; bottom: 80px; right: 30px;
+    background: rgba(0,0,0,0.6); color: #ccc; padding: 8px 15px;
+    z-index: 20; border-radius: 4px;
+  }
+
+  @media (max-width: 768px) {
+    .grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+    #playerWrapper { width: 100%; border: none; }
+    .search-wrapper input { width: 150px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Stream<span>Pro</span></a>
+  <div class="search-wrapper">
+    <input type="text" id="searchInput" placeholder="Find channels...">
+    <i class="fas fa-search search-icon"></i>
+  </div>
+</nav>
+
+<div class="ad-slot">TOP BANNER AD (Responsive)</div>
+
+<div class="container">
+  
+  <div class="breadcrumb">
+    <div class="section-title" id="pageTitle">Browse Categories</div>
+    <button class="back-btn" id="backBtn"><i class="fas fa-chevron-left"></i> Back to Categories</button>
+  </div>
+  
+  <div class="ad-slot" style="height: 100px; margin-bottom: 30px; max-width: 100%;">
+    SECTION AD SPACE
+  </div>
+
+  <div class="grid" id="contentGrid">
+    </div>
+
+</div>
+
+<div id="playerModal">
+  <div id="playerWrapper">
+    <i class="fas fa-times close-btn" id="closePlayerBtn"></i>
+    
+    <div id="mainPlayer"></div>
+    
+    <div id="adLayer" style="display:none;">
+      <video id="adVideo" playsinline disablePictureInPicture></video>
+      <div id="adTimer" class="timer-badge">Ad starting...</div>
+      <button class="skip-btn" id="skipBtn">Skip Ad</button>
+    </div>
+  </div>
+  
+  <div class="ad-slot" style="margin-top: 20px; max-width: 728px;">
+    PLAYER BOTTOM AD
+  </div>
+</div>
+
+<script>
+window.addEventListener('load', function(){
+  // --- SETTINGS ---
+  const AD_VIDEO_URL = "https://www.w3schools.com/html/mov_bbb.mp4"; 
+  const LOGO_URL = "https://i.imgur.com/L2y0q0e.png"; 
+  const SKIP_TIME = 5;
+
+  // --- ELEMENTS ---
+  const grid = document.getElementById('contentGrid');
+  const backBtn = document.getElementById('backBtn');
+  const title = document.getElementById('pageTitle');
+  const search = document.getElementById('searchInput');
+  const modal = document.getElementById('playerModal');
+  const closeBtn = document.getElementById('closePlayerBtn');
+  const adLayer = document.getElementById('adLayer');
+  const adVideo = document.getElementById('adVideo');
+  const skipBtn = document.getElementById('skipBtn');
+  const adTimer = document.getElementById('adTimer');
+
+  let player = null;
+  let allData = [];
+  let currentGroupChannels = [];
+  let view = 'groups';
+
+  // --- FETCH ---
+  fetch('/cks.json')
+    .then(res => res.json())
+    .then(data => {
+      allData = data.groups;
+      renderGroups(allData);
+    })
+    .catch(err => grid.innerHTML = '<div style="color:red;padding:20px;">Error loading data</div>');
+
+  // --- RENDER ---
+  function renderGroups(groups){
+    view = 'groups';
+    grid.innerHTML = '';
+    backBtn.style.display = 'none';
+    title.innerText = 'Browse Categories';
+    search.value = '';
+
+    groups.forEach(g => {
+      const el = document.createElement('div');
+      el.className = 'card';
+      const img = g.img || 'https://via.placeholder.com/300x200/111/555?text=Category';
+      el.innerHTML = `
+        <div class="thumb" style="background-image:url('${img}')"></div>
+        <div class="card-info">
+          <div class="card-title">${g.groupName}</div>
+          <div class="card-sub">${g.channels ? g.channels.length : 0} Channels</div>
+        </div>`;
+      el.onclick = () => renderChannels(g);
+      grid.appendChild(el);
+    });
+  }
+
+  function renderChannels(group){
+    view = 'channels';
+    currentGroupChannels = group.channels;
+    grid.innerHTML = '';
+    backBtn.style.display = 'inline-block';
+    title.innerText = group.groupName;
+    search.value = '';
+
+    if(!currentGroupChannels.length) {
+      grid.innerHTML = '<div style="color:#666">No channels available.</div>';
+      return;
+    }
+
+    currentGroupChannels.forEach(c => {
+      const el = document.createElement('div');
+      el.className = 'card';
+      const img = c.img || 'https://via.placeholder.com/300x200/000/333?text=TV';
+      el.innerHTML = `
+        <div class="thumb" style="background-image:url('${img}')"></div>
+        <div class="card-info">
+          <div class="card-title">${c.name}</div>
+          <div class="card-sub">Live TV</div>
+        </div>`;
+      el.onclick = () => playStream(c.url);
+      grid.appendChild(el);
+    });
+  }
+
+  // --- SEARCH ---
+  search.addEventListener('input', (e) => {
+    const val = e.target.value.toLowerCase();
+    grid.innerHTML = '';
+
+    if(view === 'groups') {
+      const filtered = allData.filter(g => g.groupName.toLowerCase().includes(val));
+      filtered.forEach(g => {
+        const el = document.createElement('div'); el.className = 'card';
+        const img = g.img || '';
+        el.innerHTML = `<div class="thumb" style="background-image:url('${img}')"></div><div class="card-info"><div class="card-title">${g.groupName}</div></div>`;
+        el.onclick = () => renderChannels(g);
+        grid.appendChild(el);
+      });
+    } else {
+      const filtered = currentGroupChannels.filter(c => c.name.toLowerCase().includes(val));
+      filtered.forEach(c => {
+        const el = document.createElement('div'); el.className = 'card';
+        const img = c.img || '';
+        el.innerHTML = `<div class="thumb" style="background-image:url('${img}')"></div><div class="card-info"><div class="card-title">${c.name}</div></div>`;
+        el.onclick = () => playStream(c.url);
+        grid.appendChild(el);
+      });
+    }
+  });
+
+  // --- PLAYER & AD LOGIC ---
+  function playStream(url) {
+    modal.style.display = 'flex';
+    
+    // Ad Setup
+    adLayer.style.display = 'flex';
+    skipBtn.style.display = 'none';
+    adTimer.style.display = 'block';
+    adTimer.innerText = "Ad starting...";
+    
+    adVideo.src = AD_VIDEO_URL;
+    adVideo.volume = 1.0;
+    adVideo.play().catch(() => console.log('Autoplay blocked'));
+
+    // Timer
+    let count = SKIP_TIME;
+    const interval = setInterval(() => {
+      count--;
+      if(count > 0) {
+        adTimer.innerText = `Skip in ${count}s`;
+      } else {
+        clearInterval(interval);
+        adTimer.style.display = 'none';
+        skipBtn.style.display = 'block';
+      }
+    }, 1000);
+
+    // Background Player
+    if(player) { player.destroy(); player = null; }
+    player = new Clappr.Player({
+      source: url,
+      parentId: '#mainPlayer',
+      width: '100%', height: '100%',
+      autoPlay: true, mute: true,
+      watermark: LOGO_URL, position: 'top-right',
+      playback: { hlsjsConfig: { maxBufferLength: 30 } }
+    });
+
+    const endAd = () => {
+      clearInterval(interval);
+      adVideo.pause();
+      adLayer.style.display = 'none';
+      if(player) { player.setVolume(100); if(!player.isPlaying()) player.play(); }
+    };
+
+    adVideo.onended = endAd;
+    skipBtn.onclick = endAd;
+
+    closeBtn.onclick = () => {
+      clearInterval(interval);
+      modal.style.display = 'none';
+      adVideo.pause();
+      if(player) { player.destroy(); player = null; }
+    };
+  }
+
+  backBtn.onclick = () => renderGroups(allData);
+});
+</script>
+</body>
+</html>
