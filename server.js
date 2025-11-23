@@ -28,6 +28,9 @@ app.get("streams",(req,res)=>{
 res.render("brawse.ejs");
 
 });
+app.get("/start",(req,res)=>{
+ res.render("start.ejs");
+});
 
 app.get("/*", (req,res)=>{
 res.send(`<h1>NOT FOUND </h1> <strong>চেষ্টা করলে অবশ্যই সফল হওয়া যায়।</strong><br>
