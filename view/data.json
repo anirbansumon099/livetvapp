@@ -1,0 +1,18 @@
+{
+  "groups": [
+    {
+      "groupName":"Tata Play",
+      "img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWdcz-goeOpkLTk6974ArtYgxd8DHZ3HZkQPK-rS5YYg&s=10",
+      "channels":[
+        {"name":"Zee bangla","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOaSGgArMtdJBaRP8TjsqmPtIOHB7FqIIpleMNSy0blA&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/277431/mono.m3u8"},
+        {"name":"Sony Aath","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKY9K-AjpUrFFtCg-_rAh2RsXVFyCqNi8HRAViRqj5PA&s","url":"https://livetvapp.vercel.app/tracks-v1a1/277390/mono.m3u8"}
+      ]
+    },
+    {
+      "groupName":"Airtel live",
+      "img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpEA4wEm3Jyj1eZ4eXSwRT-Kv8AuWzBmyQH9vbIr5KkA&s=10",
+      "channels":[]
+      
+    }
+  ]
+}
