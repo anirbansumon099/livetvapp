@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StreamPro - Enter World</title>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<style>
+  body {
+    margin: 0; padding: 0; font-family: 'Rajdhani', sans-serif;
+    background: #000; color: #fff; height: 100vh;
+    display: flex; justify-content: center; align-items: center;
+    overflow: hidden;
+    background-image: url('https://assets.nflxext.com/ffe/siteui/vlv3/f841d4c7-10e1-40af-bcae-07a3f8dc141a/f6d7434e-d6de-4185-a6d4-c77a2d08737b/US-en-20220502-popsignuptwoweeks-perspective_alpha_website_medium.jpg');
+    background-size: cover; background-position: center;
+  }
+  
+  .overlay {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7); backdrop-filter: blur(5px);
+  }
+
+  .login-card {
+    position: relative; z-index: 10;
+    background: rgba(0,0,0,0.8); padding: 50px; border-radius: 15px;
+    text-align: center; border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 50px rgba(0, 210, 255, 0.2);
+    width: 350px; animation: zoomIn 0.8s ease;
+  }
+
+  .logo { font-size: 40px; font-weight: 700; margin-bottom: 10px; text-transform: uppercase; }
+  .logo span { color: #ff0055; }
+  
+  .subtitle { color: #aaa; margin-bottom: 40px; font-size: 16px; }
+
+  .user-profile {
+    width: 100px; height: 100px; border-radius: 50%; 
+    margin: 0 auto 20px; background-size: cover; 
+    background-image: url('https://i.pinimg.com/736x/c5/21/64/c52164749f7460c1edea8992cd916032.jpg');
+    border: 3px solid #ff0055; box-shadow: 0 0 20px rgba(255, 0, 85, 0.5);
+    transition: 0.3s; cursor: pointer;
+  }
+  .user-profile:hover { transform: scale(1.1); }
+
+  .enter-btn {
+    display: block; width: 100%; padding: 15px;
+    background: linear-gradient(45deg, #ff0055, #ff00cc);
+    color: white; border: none; font-size: 18px; font-weight: bold;
+    border-radius: 5px; cursor: pointer; text-decoration: none;
+    transition: 0.3s; margin-top: 20px;
+  }
+  .enter-btn:hover { letter-spacing: 2px; box-shadow: 0 0 30px rgba(255, 0, 85, 0.6); }
+
+  @keyframes zoomIn { from { transform: scale(0.8); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+</style>
+</head>
+<body>
+
+<div class="overlay"></div>
+
+<div class="login-card">
+  <div class="logo">Stream<span>Pro</span></div>
+  <div class="subtitle">Welcome back to infinite entertainment</div>
+
+  <a href="browse.html">
+      <div class="user-profile"></div>
+  </a>
+  <div style="color:#fff; margin-bottom: 20px;">Watching as <b>Guest</b></div>
+
+  <a href="browse.html" class="enter-btn">START WATCHING <i class="fas fa-arrow-right"></i></a>
+</div>
+
+</body>
+</html>
