@@ -24,7 +24,7 @@ app.get("/", (req, res) => {
 
   
 });
-app.get("streams",(req,res)=>{
+app.get("/streams",(req,res)=>{
 res.render("brawse.ejs");
 
 });
