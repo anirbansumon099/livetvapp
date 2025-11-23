@@ -32,6 +32,14 @@ app.get("/start",(req,res)=>{
  res.render("start.ejs");
 });
 
+
+app.get('/api/data', (req, res) => {
+    fs.readFile('./api/data.json', 'utf8', (err, data) => {
+        if (err) return res.status(500).json({ error: "File read error" });
+        res.json(JSON.parse(data));
+    });
+
+
 app.get("/*", (req,res)=>{
 res.send(`<h1>NOT FOUND </h1> <strong>চেষ্টা করলে অবশ্যই সফল হওয়া যায়।</strong><br>
 <strong>If you try, you can definitely succeed.</strong><br>
