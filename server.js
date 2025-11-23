@@ -24,6 +24,10 @@ app.get("/", (req, res) => {
 
   
 });
+app.get("streams",(req,res)=>{
+res.render("");
+
+});
 
 app.get("/*", (req,res)=>{
 res.send(`<h1>NOT FOUND </h1> <strong>চেষ্টা করলে অবশ্যই সফল হওয়া যায়।</strong><br>
