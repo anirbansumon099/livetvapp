@@ -1,350 +1,197 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Streaming Portal - Professional Dashboard</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StreamPro - Welcome</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
 
-    <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
+<style>
+  :root {
+    --primary: #ff0055;
+    --secondary: #00d2ff;
+    --bg-dark: #050505;
+    --text-main: #ffffff;
+    --glass: rgba(255, 255, 255, 0.05);
+  }
 
-    <style>
-        :root {
-            --primary-color: #2563eb; /* Modern Blue */
-            --primary-dark: #1e40af;
-            --secondary-bg: #f8fafc;
-            --text-dark: #1e293b;
-            --text-light: #64748b;
-            --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --radius: 16px;
-        }
+  body {
+    margin: 0; font-family: 'Rajdhani', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    overflow-x: hidden;
+  }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--secondary-bg);
-            color: var(--text-dark);
-            -webkit-font-smoothing: antialiased;
-        }
+  /* --- Navbar --- */
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 20px 8%; position: absolute; width: 84%; top: 0; z-index: 10;
+  }
+  .logo { font-size: 28px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
+  .logo span { color: var(--primary); }
+  
+  .nav-btn {
+    background: transparent; border: 1px solid rgba(255,255,255,0.3);
+    color: #fff; padding: 8px 20px; border-radius: 30px; 
+    cursor: pointer; transition: 0.3s; font-weight: 600;
+  }
+  .nav-btn:hover { border-color: var(--primary); color: var(--primary); }
 
-        /* Header Section with Glass effect overlay feeling */
-        header {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            color: white;
-            padding: 80px 20px 100px; /* Extra padding bottom for overlap */
-            text-align: center;
-            position: relative;
-        }
+  /* --- Hero Section --- */
+  .hero {
+    height: 100vh; width: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3), #050505), 
+                url('https://wallpapers.com/images/hd/netflix-background-gs7hjuwvv2g0e9fj.jpg'); 
+    background-size: cover; background-position: center;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; padding: 0 20px;
+  }
 
-        header h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin: 0;
-            letter-spacing: -1px;
-            background: linear-gradient(to right, #fff, #94a3b8);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+  .hero h1 {
+    font-size: 60px; margin: 0; line-height: 1.1;
+    text-shadow: 0 0 20px rgba(0,0,0,0.8);
+    animation: fadeIn Up 1s ease;
+  }
+  .hero span { color: var(--primary); }
+  
+  .hero p {
+    font-size: 20px; max-width: 700px; color: #ccc; margin: 20px 0 40px;
+    animation: fadeIn 1.5s ease;
+  }
 
-        header p {
-            font-size: 1.1rem;
-            color: #cbd5e1;
-            margin-top: 15px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
+  /* Call to Action Button */
+  .cta-btn {
+    background: linear-gradient(45deg, var(--primary), #ff00cc);
+    color: white; border: none; padding: 15px 50px;
+    font-size: 20px; font-weight: 700; border-radius: 50px;
+    cursor: pointer; transition: 0.3s; text-decoration: none;
+    box-shadow: 0 0 20px rgba(255, 0, 85, 0.4);
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .cta-btn:hover { transform: scale(1.05); box-shadow: 0 0 40px rgba(255, 0, 85, 0.7); }
 
-        /* Container layout */
-        .container {
-            max-width: 1000px;
-            margin: -60px auto 50px; /* Negative margin creates overlap effect */
-            padding: 0 20px;
-            position: relative;
-            z-index: 10;
-            display: grid;
-            gap: 25px;
-        }
+  /* --- Features Section --- */
+  .features {
+    padding: 80px 8%; background: #090909;
+    text-align: center;
+  }
+  .section-title { font-size: 32px; margin-bottom: 50px; font-weight: 700; }
+  .section-title span { border-bottom: 3px solid var(--secondary); padding-bottom: 5px; }
 
-        /* Professional Card Style */
-        .card {
-            background: white;
-            border-radius: var(--radius);
-            box-shadow: var(--card-shadow);
-            padding: 40px;
-            border: 1px solid rgba(255,255,255,0.5);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+  .feature-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;
+  }
+  .feature-card {
+    background: var(--glass); padding: 40px 20px; border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.05); transition: 0.3s;
+  }
+  .feature-card:hover { transform: translateY(-10px); border-color: var(--secondary); }
+  
+  .icon-box {
+    font-size: 40px; color: var(--secondary); margin-bottom: 20px;
+  }
+  .feature-card h3 { margin: 10px 0; font-size: 22px; }
+  .feature-card p { color: #aaa; font-size: 15px; line-height: 1.6; }
 
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
+  /* --- App Info / About --- */
+  .about-app {
+    padding: 80px 8%; display: flex; align-items: center; gap: 50px;
+    background: linear-gradient(45deg, #0f0c29, #1a1a2e);
+  }
+  .about-text { flex: 1; }
+  .about-text h2 { font-size: 40px; margin-bottom: 20px; }
+  .about-text p { color: #ccc; line-height: 1.8; margin-bottom: 30px; }
+  
+  .about-img { flex: 1; text-align: center; }
+  .about-img img { 
+    width: 100%; max-width: 400px; border-radius: 20px; 
+    box-shadow: 0 0 30px rgba(0, 210, 255, 0.2); 
+    border: 2px solid rgba(255,255,255,0.1);
+  }
 
-        .card-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 25px;
-            border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 15px;
-        }
+  /* --- Footer --- */
+  footer {
+    padding: 40px; text-align: center; background: #000; color: #555;
+    border-top: 1px solid #222;
+  }
+  .social-icons a { color: #fff; margin: 0 10px; font-size: 20px; transition: 0.3s; }
+  .social-icons a:hover { color: var(--primary); }
 
-        .card-header i {
-            font-size: 1.5rem;
-            color: var(--primary-color);
-            margin-right: 12px;
-            background: #eff6ff;
-            padding: 10px;
-            border-radius: 10px;
-        }
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero h1 { font-size: 36px; }
+    .about-app { flex-direction: column; text-align: center; }
+    .nav-btn { display: none; }
+  }
 
-        .card h2 {
-            margin: 0;
-            font-size: 1.5rem;
-            color: var(--text-dark);
-            font-weight: 600;
-        }
-
-        /* Info Row Styling */
-        .info-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid #f1f5f9;
-        }
-
-        .info-row:last-child {
-            border-bottom: none;
-        }
-
-        .label {
-            font-weight: 500;
-            color: var(--text-light);
-        }
-
-        .value {
-            font-weight: 600;
-            color: var(--text-dark);
-            text-align: right;
-        }
-
-        a {
-            color: var(--primary-color);
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        a:hover {
-            color: var(--primary-dark);
-            text-decoration: underline;
-        }
-
-        /* Status Badges */
-        .status-badge {
-            padding: 6px 12px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        .status-active {
-            background-color: #dcfce7;
-            color: #166534;
-        }
-
-        /* Copy Input Group */
-        .copy-group {
-            display: flex;
-            align-items: center;
-            background: #f1f5f9;
-            padding: 5px 5px 5px 15px;
-            border-radius: 8px;
-            margin-top: 5px;
-        }
-
-        .code-text {
-            font-family: 'Courier New', monospace;
-            margin-right: 10px;
-            color: #334155;
-            font-weight: bold;
-        }
-
-        .copy-btn {
-            background: white;
-            border: 1px solid #cbd5e1;
-            color: var(--text-dark);
-            padding: 6px 12px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            font-weight: 600;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .copy-btn:hover {
-            background: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
-        }
-
-        /* Video Player Customization */
-        .video-wrapper {
-            margin-top: 30px;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            background: #000;
-        }
-
-        /* Customizing the big play button color */
-        .video-js .vjs-big-play-button {
-            background-color: rgba(37, 99, 235, 0.8); /* Blue transparent */
-            border: none;
-            width: 70px;
-            height: 70px;
-            line-height: 70px;
-            border-radius: 50%;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        }
-        
-        .video-js .vjs-big-play-button:hover {
-             background-color: rgba(37, 99, 235, 1);
-        }
-
-        /* Responsive tweaks */
-        @media (max-width: 768px) {
-            header h1 { font-size: 2rem; }
-            .container { margin-top: -40px; }
-            .card { padding: 25px; }
-            .info-row { flex-direction: column; align-items: flex-start; gap: 5px; }
-            .value { text-align: left; }
-        }
-    </style>
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+</style>
 </head>
 <body>
 
-    <header>
-        <div class="header-content">
-            <h1>Streaming Portal</h1>
-            <p>Secure, high-latency live streaming infrastructure dashboard for developers and administrators.</p>
-        </div>
-    </header>
+<nav>
+  <div class="logo">Stream<span>Pro</span></div>
+  <button class="nav-btn">Login</button>
+</nav>
 
-    <main class="container">
-        
-        <section class="card">
-            <div class="card-header">
-                <i class="fa-solid fa-code"></i>
-                <h2>Developer Profile</h2>
-            </div>
-            
-            <div class="info-row">
-                <span class="label">Name</span>
-                <span class="value">Anirban Sumon</span>
-            </div>
-            <div class="info-row">
-                <span class="label">Role</span>
-                <span class="value">Full Stack Developer</span>
-            </div>
-            <div class="info-row">
-                <span class="label">GitHub</span>
-                <span class="value"><a href="https://github.com/anirbansumon099" target="_blank"><i class="fa-brands fa-github"></i> anirbansumon099</a></span>
-            </div>
-            <div class="info-row">
-                <span class="label">Contact</span>
-                <span class="value">anirban@example.com</span>
-            </div>
-            <div style="margin-top: 15px; font-size: 0.95rem; color: var(--text-light); line-height: 1.6;">
-                Passionate about building modern web applications, working with Node.js, Express, and frontend frameworks to deliver professional solutions.
-            </div>
-        </section>
+<section class="hero">
+  <h1>Unlimited TV, Sports <br> & <span>Live Events</span></h1>
+  <p>Experience buffer-free streaming with our premium IPTV player. Access thousands of channels anytime, anywhere.</p>
+  
+  <a href="player.html" class="cta-btn">
+    <i class="fas fa-play"></i> START STREAMING
+  </a>
+</section>
 
-        <section class="card">
-            <div class="card-header">
-                <i class="fa-solid fa-tower-broadcast"></i>
-                <h2>Live Stream Status</h2>
-            </div>
+<section class="features">
+  <div class="section-title"><span>Why Choose Us?</span></div>
+  
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="icon-box"><i class="fas fa-bolt"></i></div>
+      <h3>Super Fast</h3>
+      <p>Lightning fast loading speeds with zero buffering technology.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon-box"><i class="fas fa-tv"></i></div>
+      <h3>Live TV</h3>
+      <p>Access 1000+ local and international TV channels for free.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon-box"><i class="fas fa-mobile-alt"></i></div>
+      <h3>Responsive</h3>
+      <p>Optimized for all devices including Mobile, Tablet, and Desktop.</p>
+    </div>
+  </div>
+</section>
 
-            <div class="info-row">
-                <span class="label">Project Name</span>
-                <span class="value">Live TV App v1.0.0</span>
-            </div>
-            <div class="info-row">
-                <span class="label">Server Status</span>
-                <span class="value"><span class="status-badge status-active"><i class="fa-solid fa-circle-check"></i> Active & Broadcasting</span></span>
-            </div>
-            <div class="info-row">
-                <span class="label">Stream Server</span>
-                <span class="value"><a href="#" target="_blank">stream.example.com</a></span>
-            </div>
-            
-            <div style="margin-top: 20px;">
-                <span class="label">Access Token / Key</span>
-                <div class="copy-group">
-                    <span class="code-text" id="accessKey">12345-ABCDE-SECURE-KEY</span>
-                    <button class="copy-btn" onclick="copyKey(this)">
-                        <i class="fa-regular fa-copy"></i> Copy
-                    </button>
-                </div>
-            </div>
+<section class="about-app">
+  <div class="about-text">
+    <h2>The Ultimate <span style="color:var(--secondary)">IPTV Experience</span></h2>
+    <p>
+      StreamPro is a cutting-edge web-based IPTV solution designed for entertainment lovers. 
+      Whether you are into Live Sports, Breaking News, or Blockbuster Movies, we have it all sorted for you.
+      <br><br>
+      Our advanced HLS player ensures high-quality playback even on slow internet connections. 
+      No installation needed, just click and play!
+    </p>
+    <a href="player.html" class="nav-btn" style="display:inline-block; background:var(--secondary); border:none;">Browse Channels</a>
+  </div>
+  <div class="about-img">
+    <img src="https://images.unsplash.com/photo-1593784697956-141829e921d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="App Preview">
+  </div>
+</section>
 
-            <div class="video-wrapper">
-                <video
-                    id="my-video"
-                    class="video-js vjs-fluid vjs-big-play-centered"
-                    controls
-                    preload="auto"
-                    poster="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREHIsOj_dyse_D8yyDmlMhLU-hyj7lm3vowJRbO1Z8qUQuhggQMqmHu99D36GdhXU0izDksFTcznE2-wf9f2EgVH5US4e6SAtxu2AGhns&s=10" 
-                    data-setup='{}'
-                >
-                    <source src="https://livetvapp.vercel.app/tracks-v1a1/277390/index.m3u8" type="application/x-mpegURL">
-                    
-                    <p class="vjs-no-js">
-                        To view this video please enable JavaScript, and consider upgrading to a
-                        web browser that
-                        <a href="https://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-                    </p>
-                </video>
-            </div>
-        </section>
+<footer>
+  <div class="social-icons">
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+  </div>
+  <p style="margin-top:20px;">&copy; 2024 StreamPro IPTV. All Rights Reserved.</p>
+</footer>
 
-    </main>
-
-    <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
-
-    <script>
-        function copyKey(btnElement) {
-            const keyText = document.getElementById('accessKey').innerText;
-            
-            navigator.clipboard.writeText(keyText).then(() => {
-                // Visual feedback on button
-                const originalContent = btnElement.innerHTML;
-                btnElement.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
-                btnElement.style.background = '#22c55e';
-                btnElement.style.color = 'white';
-                btnElement.style.borderColor = '#22c55e';
-
-                // Revert back after 2 seconds
-                setTimeout(() => {
-                    btnElement.innerHTML = originalContent;
-                    btnElement.style.background = 'white';
-                    btnElement.style.color = '#1e293b';
-                    btnElement.style.borderColor = '#cbd5e1';
-                }, 2000);
-            }).catch(err => {
-                alert('Failed to copy text');
-            });
-        }
-    </script>
 </body>
 </html>
