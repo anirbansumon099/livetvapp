@@ -8,7 +8,7 @@ const { URL } = require("url");
 
 const router = express.Router();
 
-const baseServer = process.env.MAIN_SERVER + "/live.php";
+const baseServer = process.env.MAIN_SERVER + "/live3.php";
 
 const headerVariants = [
     [
