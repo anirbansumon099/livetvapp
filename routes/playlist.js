@@ -101,8 +101,8 @@ res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
 
     const headers = { ...commonHeaders };
   	const randHeader = headerVariants[Math.floor(Math.random() * headerVariants.length)];
-  	headers["User-Agent"] = randHeader[0];
-
+  	//headers["User-Agent"] = randHeader[0];
+   
     console.log("[PLAYLIST] Fetching:", playlistURL);
 
     const playlist = await curlRequest(playlistURL, headers, 3);
