@@ -30,7 +30,7 @@ const headerVariants = [
 
 const commonHeaders = {
     "Host": "allinonereborn.online",
-    "User-Agent":"Mozilla/5.0 (Android 13; Mobile; rv:145.0) Gecko/145.0 Firefox/145.0",",
+    "User-Agent":"Mozilla/5.0 (Android 13; Mobile; rv:145.0) Gecko/145.0 Firefox/145.0",
     "Accept": "*/*",
     "Accept-Language": "en-US,en;q=0.5",
     "Referer": "https://allinonereborn.online/airteltv-web/player.html",
