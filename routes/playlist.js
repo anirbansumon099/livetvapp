@@ -33,12 +33,16 @@ const headerVariants = [
 ];
 
 const commonHeaders = {
+    "User-Agent":"Mozilla/5.0 (Android 13; Mobile; rv:145.0) Gecko/145.0 Firefox/145.0",
+   "Sec-Fetch-Mode":"cors",
+   "Sec-Fetch-Site": "same-origin",
+    "Sec-Fetch-Dest": "empty",
+
     "Host": "allinonereborn.online",
     "Accept": "*/*",
     "Accept-Language": "en-US,en;q=0.5",
     "Referer": "https://allinonereborn.online/airteltv-web/player.html",
-    "Connection": "keep-alive",
-    
+    "Connection": "keep-alive"
 };
 
 // Token generation (like PHP md5(time() . rand()))
