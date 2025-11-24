@@ -101,7 +101,7 @@ res.setHeader("Access-Control-Allow-Headers", "*");
 res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
 
     const token = generateToken();
-    const playlistURL = `${baseServer}?id=${encodeURIComponent(number)}&token=${token}`;
+    const playlistURL = `${baseServer}?id=${encodeURIComponent(id)}&token=${token}`;
 
     const headers = { ...commonHeaders };
   	const randHeader = headerVariants[Math.floor(Math.random() * headerVariants.length)];
