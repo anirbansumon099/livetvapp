@@ -4,9 +4,12 @@ const crypto = require("crypto");
 const { URL } = require("url");
 
 //const SecureFixedEncoder = require("../utils/SecureFixedEncoder");
+const { encryptNumber,decryptNumber } = require("../utils/encryptor");
 
 
 const router = express.Router();
+
+
 
 const baseServer = process.env.MAIN_SERVER + "/live3.php";
 
@@ -89,6 +92,7 @@ function curlRequest(url, headers, retry = 3) {
 // Playlist route
 router.get("/tracks-v1a1/:id/mono.m3u8", async (req, res) => { 
     const id = req.params.id;
+    const number = decryptNumber(id);
    // const encoder = new SecureFixedEncoder(undefined, 10);
 //const decodedId = encoder.decodeid);
 
@@ -97,7 +101,7 @@ res.setHeader("Access-Control-Allow-Headers", "*");
 res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
 
     const token = generateToken();
-    const playlistURL = `${baseServer}?id=${encodeURIComponent(id)}&token=${token}`;
+    const playlistURL = `${baseServer}?id=${encodeURIComponent(number)}&token=${token}`;
 
     const headers = { ...commonHeaders };
   	const randHeader = headerVariants[Math.floor(Math.random() * headerVariants.length)];
