@@ -30,11 +30,13 @@ const headerVariants = [
 
 const commonHeaders = {
     "Host": "allinonereborn.online",
-    "User-Agent":"Mozilla/5.0 (Android 13; Mobile; rv:145.0) Gecko/145.0 Firefox/145.0",
     "Accept": "*/*",
     "Accept-Language": "en-US,en;q=0.5",
     "Referer": "https://allinonereborn.online/airteltv-web/player.html",
-    "Connection": "keep-alive"
+    "Connection": "keep-alive",
+    "Sec-Fetch-Dest":"empty"
+"Sec-Fetch-Mode":"cors",
+"Sec-Fetch-Site":"same-origin"
 };
 
 // Token generation (like PHP md5(time() . rand()))
@@ -92,8 +94,8 @@ res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
     const playlistURL = `${baseServer}?id=${encodeURIComponent(id)}&token=${token}`;
 
     const headers = { ...commonHeaders };
-  //  const randHeader = headerVariants[Math.floor(Math.random() * headerVariants.length)];
-  //  headers["User-Agent"] = randHeader[0];
+  	const randHeader = headerVariants[Math.floor(Math.random() * headerVariants.length)];
+  	headers["User-Agent"] = randHeader[0];
 
     console.log("[PLAYLIST] Fetching:", playlistURL);
 
