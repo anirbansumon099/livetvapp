@@ -50,7 +50,7 @@ app.post("/generate", (req, res) => {
     });
 });
 
-router.post("/decode", (req, res) => {
+app.post("/decode", (req, res) => {
     const code = req.body.code;
 
     if (!code) return res.status(400).json({ error: "Valid 'code' required" });
