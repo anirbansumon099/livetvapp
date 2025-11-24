@@ -2,17 +2,49 @@
   "groups": [
     {
       "groupName":"Tata Play",
-      "img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWdcz-goeOpkLTk6974ArtYgxd8DHZ3HZkQPK-rS5YYg&s=10",
+      "img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWdcz-goeOpkLTk6974ArtYgxd8DHZ3HZkQPK-rS5YYg&s",
       "channels":[
-        {"name":"Zee bangla","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOaSGgArMtdJBaRP8TjsqmPtIOHB7FqIIpleMNSy0blA&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/277431/mono.m3u8"},
-        {"name":"Sony Aath","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKY9K-AjpUrFFtCg-_rAh2RsXVFyCqNi8HRAViRqj5PA&s","url":"https://livetvapp.vercel.app/tracks-v1a1/277390/mono.m3u8"}
+        {"id":"277431",
+          "name":"Zee bangla","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOaSGgArMtdJBaRP8TjsqmPtIOHB7FqIIpleMNSy0blA&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/277431/mono.m3u8"},
+        {"id":"277421",
+          "name":"Colors Bangla HD","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROdWCW5dW3dH09ai6QWmSQ6WH5XSzsc1Sg5v-ww5-EJA&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/277421/mono.m3u8"},
+        {"id":"277422",
+          "name":"NAT GEO","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGewv76A2kADyG-r_PiMi_CmJbluenBkqtap8sZhX5Vg&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/277422/mono.m3u8"},
+        {
+      "name":"Sony Aath","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKY9K-AjpUrFFtCg-_rAh2RsXVFyCqNi8HRAViRqj5PA&s","url":"https://livetvapp.vercel.app/tracks-v1a1/277390/mono.m3u8"},
+      {"id":"277425",
+          "name":"Jalsha Movies HD","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiGT1RQx3LxNgG20otZo7gTgkGGu_uMjrcHcdhB-kRMg&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/277425/mono.m3u8"},                          {
+                            "id":"277416",
+                "name":"Sun Bangla","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTd1XPuVE7_gTXJKR9B6wuvglbaKQFyJRz5rP40TYYFXw&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/277416/mono.m3u8"}
       ]
     },
     {
       "groupName":"Airtel live",
       "img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpEA4wEm3Jyj1eZ4eXSwRT-Kv8AuWzBmyQH9vbIr5KkA&s=10",
-      "channels":[]
+      "channels":[
+                {"id":"277402",
+          "name":"Zee bangla","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOaSGgArMtdJBaRP8TjsqmPtIOHB7FqIIpleMNSy0blA&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/277431/mono.m3u8"},
+
+                {"id":"277424",
+          "name":"Star Jalsha HD","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREp6IJHZ2X3GPWcaCaZuqNHg7_JKa9zgicnz_rvmeSMg&s","url":"https://livetvapp.vercel.app/tracks-v1a1/277424/mono.m3u8"},
+          {"id":"277428",
+          "name":"Zee Bangla Cinema","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8YlJcQHUBQ02RBcZuCpZ52XLA6NNe9Q8sRviSowgSCA&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/277428/mono.m3u8"},
+          {"id":"276911",
+          "name":"Star Gold select HD","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzsB0VDmhijXr_VxGF9MvI4wvlFEOcamZ5zh5_w4ZI5Q&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/276911/mono.m3u8"},
+          {"id":"276907",
+          "name":"Zee Chinema HD","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoibcP2TeeHbfWk3VQE8ljtgiOywl1pxXGylF9hJQQag&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/276907/mono.m3u8"},
+          {"id":"276908",
+          "name":"Zing","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3vzwE0uh3eHXaNBIpzFtVuScqZc-Y03c1w4BdBvphRA&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/276908/mono.m3u8"},
+          {"id":"276909",
+          "name":"Star Bharat","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUuDFsr6WM-I-eOo6BBi8SPOpsAskNCCHpUItvB89ijQ&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/276909/mono.m3u8"}
+        
+        ]
       
+    },
+    {
+      "groupName":"Global Mix",
+      "img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQK9xclLTvufMy4IJA0Ty4odyVJUYrYACnbveT6Wl0DLA&s=10",
+      "channels":[]
     }
   ]
 }
