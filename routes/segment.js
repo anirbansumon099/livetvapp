@@ -8,14 +8,7 @@ const router = express.Router();
 const baseServer = process.env.MAIN_SERVER + "/live3.php";
 
 const headerVariants = [
-    [
-        "Mozilla/5.0 (Android 13; Mobile; rv:145.0) Gecko/145.0 Firefox/145.0",
-        "Sec-Fetch-Mode: cors",
-        "Sec-Fetch-Site: same-origin",
-        "Sec-Fetch-Dest: empty"
-
-        
-    ],
+   
     [
         "Mozilla/5.0 (Linux; Android 12; SM-A505F) AppleWebKit/537.36 Chrome/118.0 Mobile Safari/537.36",
         "Sec-Fetch-Mode: navigate",
@@ -31,6 +24,11 @@ const headerVariants = [
 ];
 
 const commonHeaders = {
+   "User-Agent":"Mozilla/5.0 (Android 13; Mobile; rv:145.0) Gecko/145.0 Firefox/145.0",
+   "Sec-Fetch-Mode":"cors",
+   "Sec-Fetch-Site": "same-origin",
+    "Sec-Fetch-Dest": "empty",
+
     "Host": "allinonereborn.online",
     "Accept": "*/*",
     "Accept-Language": "en-US,en;q=0.5",
@@ -79,7 +77,7 @@ res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
 
     const headers = { ...commonHeaders };
     const randHeader = headerVariants[Math.floor(Math.random() * headerVariants.length)];
-    headers["User-Agent"] = randHeader[0];
+   // headers["User-Agent"] = randHeader[0];
 
     console.log("[SEGMENT] Fetching:", segURL);
 
