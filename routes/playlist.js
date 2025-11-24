@@ -14,17 +14,21 @@ const headerVariants = [
     [
         "Mozilla/5.0 (Android 13; Mobile; rv:145.0) Gecko/145.0 Firefox/145.0",
         "Sec-Fetch-Mode: cors",
-        "Sec-Fetch-Site: same-origin"
+        "Sec-Fetch-Site: same-origin",
+        "Sec-Fetch-Dest:empty"
     ],
     [
         "Mozilla/5.0 (Linux; Android 12; SM-A505F) AppleWebKit/537.36 Chrome/118.0 Mobile Safari/537.36",
         "Sec-Fetch-Mode: navigate",
-        "Sec-Fetch-Site: same-origin"
+        "Sec-Fetch-Site: same-origin",
+        "Sec-Fetch-Dest:empty"
     ],
     [
         "Mozilla/5.0 (Windows NT 10.0; Win64) AppleWebKit/537.36 Chrome/120.0 Safari/537.36",
         "Sec-Fetch-Mode: no-cors",
-        "Sec-Fetch-Site: same-origin"
+        "Sec-Fetch-Site: same-origin",
+        "Sec-Fetch-Dest:empty"
+        
     ]
 ];
 
@@ -34,9 +38,7 @@ const commonHeaders = {
     "Accept-Language": "en-US,en;q=0.5",
     "Referer": "https://allinonereborn.online/airteltv-web/player.html",
     "Connection": "keep-alive",
-    "Sec-Fetch-Dest":"empty"
-"Sec-Fetch-Mode":"cors",
-"Sec-Fetch-Site":"same-origin"
+    
 };
 
 // Token generation (like PHP md5(time() . rand()))
