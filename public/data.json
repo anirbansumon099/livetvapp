@@ -26,7 +26,13 @@
                 { "id":"276925",
                 "name":"Colors","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWNlnQnEkuxB3czvLxi_qzPa6BgTwwBYBfhbfrNjfL8A&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/276926/mono.m3u8"},
                 { "id":"276929",
-                "name":"Zoom","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPmuyjtVph0Ep3V-k2MVdUGfVKPw1u4pl1yRKGSzq3LQ&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/276929/mono.m3u8"}
+                "name":"Zoom","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPmuyjtVph0Ep3V-k2MVdUGfVKPw1u4pl1yRKGSzq3LQ&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/276929/mono.m3u8"},
+                { "id":"276910",
+                "name":"Star Gold","img":"https://livetvapp.vercel.app/logo.png","url":"https://livetvapp.vercel.app/tracks-v1a1/276910/mono.m3u8"},
+                { "id":"276989",
+                "name":"Anmol tv","img":"https://livetvapp.vercel.app/logo.png","url":"https://livetvapp.vercel.app/tracks-v1a1/276989/mono.m3u8"},
+                { "id":"276997",
+                "name":"Pogo","img":"https://livetvapp.vercel.app/logo.png","url":"https://livetvapp.vercel.app/tracks-v1a1/276997/mono.m3u8"}
                 
                 
                 
@@ -37,14 +43,12 @@
       "groupName":"Airtel live",
       "img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpEA4wEm3Jyj1eZ4eXSwRT-Kv8AuWzBmyQH9vbIr5KkA&s=10",
       "channels":[
-                {"id":"277402",
-          "name":"Zee bangla","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOaSGgArMtdJBaRP8TjsqmPtIOHB7FqIIpleMNSy0blA&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/277431/mono.m3u8"},
-           { "id":"277402",
-                "name":"Zee Bangla HD","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAg5FBjzdIfJQ2YWSxg4z8ktMN7H7uednOYcMNeun-bw&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/277402/mono.m3u8"},
 
-                {"id":"277424",
+          { "id":"277402",
+                "name":"Zee Bangla HD","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAg5FBjzdIfJQ2YWSxg4z8ktMN7H7uednOYcMNeun-bw&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/277402/mono.m3u8"},
+          {"id":"277424",
           "name":"Star Jalsha HD","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREp6IJHZ2X3GPWcaCaZuqNHg7_JKa9zgicnz_rvmeSMg&s","url":"https://livetvapp.vercel.app/tracks-v1a1/277424/mono.m3u8"},
-                  {"id":"277421",
+          {"id":"277421",
           "name":"Colors Bangla HD","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROdWCW5dW3dH09ai6QWmSQ6WH5XSzsc1Sg5v-ww5-EJA&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/277421/mono.m3u8"},
           {"id":"277428",
           "name":"Zee Bangla Cinema","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8YlJcQHUBQ02RBcZuCpZ52XLA6NNe9Q8sRviSowgSCA&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/277428/mono.m3u8"},
@@ -56,20 +60,37 @@
           "name":"Zing","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3vzwE0uh3eHXaNBIpzFtVuScqZc-Y03c1w4BdBvphRA&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/276908/mono.m3u8"},
           {"id":"276909",
           "name":"Star Bharat","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUuDFsr6WM-I-eOo6BBi8SPOpsAskNCCHpUItvB89ijQ&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/276909/mono.m3u8"},
-               { "id":"276913",
+          { "id":"276913",
                 "name":"Star Uthsab","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpNiUBkpIGwRU1ZZ9kBtnhchsG2zo_DNUGSPUvO6LVSw&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/276913/mono.m3u8"},
-                { "id":"276914",
+          { "id":"276914",
                 "name":"Star Uthsab Movies","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTya-yBQnzOxRhxMQyPWcVrDT2SPZglY2KExSIThSetSQ&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/276914/mono.m3u8"},
-                 { "id":"276915",
+          { "id":"276915",
                 "name":"Sony Entertainment","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFvDFBWIf_Vm7XpE3slrQ_z0hEMCKPN6YHSUkEqGmzDQ&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/276915/mono.m3u8"},
-                { "id":"276918",
+          { "id":"276918",
                 "name":"Sony Pix","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS05d-JlgOLYIJtmKpN4G6-jjBzbU12sUomZKkh0wylkw&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/276818/mono.m3u8"},
-                { "id":"276919",
+           { "id":"276919",
                 "name":"Sony BBC Earth","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvvjcL6sZy6Knbg53sRyVgKKRksCepGowuvOWGOvPa8w&s","url":"https://livetvapp.vercel.app/tracks-v1a1/276919/mono.m3u8"},
-                { "id":"276921",
+           { "id":"276921",
                 "name":"Sony Pal","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWIiIE4dUEDysNiIqcbcKjUP4Ms0eBQMlBR97ZKcvn3Q&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/276921/mono.m3u8"},
-                { "id":"276922",
-                "name":"Sony WAH","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwByiTw8iBddzofyoIETf-GuDsDycfdrKFJ_PvgnaeUg&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/276922/mono.m3u8"}
+           { "id":"276922",
+                "name":"Sony WAH","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwByiTw8iBddzofyoIETf-GuDsDycfdrKFJ_PvgnaeUg&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/276922/mono.m3u8"},
+                
+                
+                { "id":"276953",
+                "name":"Disvovery HD","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpjVRgnAG1N4CuUpbtY5FRPykn31FWF_zr5qirYYmmSA&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/276953/mono.m3u8"},
+                { "id":"276979",
+                "name":"Nick +","img":"https://livetvapp.vercel.app/logo.png","url":"https://livetvapp.vercel.app/tracks-v1a1/276979/mono.m3u8"},
+                
+                { "id":"276990",
+                "name":"Anmol Cinema","img":"https://livetvapp.vercel.app/logo.png","url":"https://livetvapp.vercel.app/tracks-v1a1/276990/mono.m3u8"},
+                { "id":"276991",
+                "name":"Zee Bharat","img":"https://livetvapp.vercel.app/logo.png","url":"https://livetvapp.vercel.app/tracks-v1a1/276991/mono.m3u8"},
+                { "id":"277015",
+                "name":"CN+","img":"https://livetvapp.vercel.app/logo.png","url":"https://livetvapp.vercel.app/tracks-v1a1/277015/mono.m3u8"}
+                
+                
+                
+                
         
         ]
       
@@ -80,6 +101,13 @@
       "channels":[
         { "id":"276920",
                 "name":"Sony Sab","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMtI7g_1PuEt3uC03TV-iRgZAlnknKTh5RB3Le8PNT5w&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/276920/mono.m3u8"},
+                
+                { "id":"277017",
+                "name":"B4U Music","img":"https://livetvapp.vercel.app/logo.png","url":"https://livetvapp.vercel.app/tracks-v1a1/277017/mono.m3u8"},
+                { "id":"277020",
+                "name":"Dongol","img":"https://livetvapp.vercel.app/logo.png","url":"https://livetvapp.vercel.app/tracks-v1a1/277020/mono.m3u8"},
+                { "id":"277021",
+                "name":"Masti","img":"https://livetvapp.vercel.app/logo.png","url":"https://livetvapp.vercel.app/tracks-v1a1/277021/mono.m3u8"},
                 { "id":"276924",
                 "name":"B4U Movies","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToCvklVkIa9n298IbijzYHVXnGHQbQA4FJwG-GwkQ-Mw&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/276924/mono.m3u8"},
                 { "id":"276926",
@@ -88,11 +116,22 @@
                 "name":"Aabtak hindi","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyCazqlulw50tqCFaZ8UT5hljv7lHYvE4hfzYcOOoQGw&s","url":"https://livetvapp.vercel.app/tracks-v1a1/276927/mono.m3u8"},
                  { "id":"276928",
                 "name":"Tv9 Marathi","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzsHyRMfaMMcRiAh9wCrmaWDOvtIGW-RgWp1DJiWdIig&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/276928/mono.m3u8"},
-                
+                { "id":"276992",
+                "name":"Zee News","img":"https://livetvapp.vercel.app/logo.png","url":"https://livetvapp.vercel.app/tracks-v1a1/276992/mono.m3u8"},
                  { "id":"276930",
                 "name":"Aastha tv","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9MDR8KYHFfJU6Y6mNxcTbQ2lLALISRGPGaD8CwdDIog&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/276930/mono.m3u8"},
                  { "id":"276932",
-                "name":"ABP","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIVExsMRO8oD6wmdOioafLQouJFyTTdcb1Ys02GdHO6Q&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/276932/mono.m3u8"}
+                "name":"ABP","img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIVExsMRO8oD6wmdOioafLQouJFyTTdcb1Ys02GdHO6Q&s=10","url":"https://livetvapp.vercel.app/tracks-v1a1/276932/mono.m3u8"},
+                { "id":"276954",
+                "name":"E24 Music","img":"https://livetvapp.vercel.app/logo.png","url":"https://livetvapp.vercel.app/tracks-v1a1/276954/mono.m3u8"},
+                { "id":"276955",
+                "name":"Punjub Hits","img":"https://livetvapp.vercel.app/logo.png","url":"https://livetvapp.vercel.app/tracks-v1a1/276955/mono.m3u8"},
+                { "id":"276912",
+                "name":"Star Plus","img":"https://livetvapp.vercel.app/logo.png","url":"https://livetvapp.vercel.app/tracks-v1a1/276912/mono.m3u8"},
+                { "id":"276986",
+                "name":"Star Gold Romance","img":"https://livetvapp.vercel.app/logo.png","url":"https://livetvapp.vercel.app/tracks-v1a1/276986/mono.m3u8"},
+                { "id":"276998",
+                "name":"Bhojpuri Chinema","img":"https://livetvapp.vercel.app/logo.png","url":"https://livetvapp.vercel.app/tracks-v1a1/276998/mono.m3u8"}
         
         ]
     }
