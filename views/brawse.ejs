@@ -3,92 +3,204 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>StreamPro - Browse</title>
+<title>LivetvApp -Browse Channel</title>
 
 <script src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
 <style>
+  /* Material 3 Color Palette Simulation (Updated for Deep Blue Theme) */
   :root {
-    --primary: #ff0055;
-    --accent: #00d2ff;
-    --bg-dark: #0b0b0b;
-    --bg-card: #141414;
-    --text: #ffffff;
+    --primary: #0D47A1;    /* Deep Blue - Primary Action */
+    --accent: #00BCD4;     /* Bright Cyan - Secondary Accent */
+    --bg-dark: #0A1929;    /* Very Dark Navy - Main Background */
+    --bg-card: #1A2C40;    /* Dark Blue Surface - Card Background */
+    --text: #E0F7FA;       /* Light Text */
+    --outline: #546E7A;    /* Muted Blue-Grey - Outline/Subtext */
+    --shadow-color: rgba(0, 0, 0, 0.6);
   }
 
-  body { margin: 0; font-family: 'Rajdhani', sans-serif; background: var(--bg-dark); color: var(--text); min-height: 100vh; }
+  body { 
+    margin: 0; 
+    font-family: 'Roboto', sans-serif; 
+    background: var(--bg-dark); 
+    color: var(--text); 
+    min-height: 100vh;
+  }
 
-  /* --- Navbar --- */
+  /* --- Top App Bar (Navbar) --- */
   nav {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 15px 4%; background: #0f0f0f; border-bottom: 1px solid #222;
-    position: sticky; top: 0; z-index: 50; box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+    padding: 10px 4%; 
+    background: var(--bg-card); 
+    position: sticky; top: 0; z-index: 50; /* Header z-index: 50 */
+    box-shadow: 0 2px 4px var(--shadow-color); 
+    min-height: 64px; 
   }
-  .logo { font-size: 26px; font-weight: 700; color: #fff; text-decoration: none;}
-  .logo span { color: var(--primary); }
+  .logo { font-size: 24px; font-weight: 700; color: var(--text); text-decoration: none;}
+  .logo span { color: var(--primary); font-weight: 500;} 
   
+  .nav-links {
+    display: flex;
+    align-items: center;
+    margin-left: 50px; 
+    flex-grow: 1; 
+  }
+  .nav-link {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: background 0.2s;
+  }
+  .nav-link:hover {
+    /* Updated Primary Color RGBA */
+    background: rgba(13, 71, 161, 0.2); 
+  }
+
   .search-wrapper { position: relative; }
   .search-wrapper input {
-    background: #000; border: 1px solid #333; padding: 10px 40px 10px 15px;
-    border-radius: 4px; color: #fff; width: 250px; transition: 0.3s;
-    font-family: 'Rajdhani', sans-serif;
+    background: #000000; 
+    border: none; 
+    padding: 10px 40px 10px 15px;
+    border-radius: 24px; 
+    color: var(--text); 
+    width: 250px; 
+    transition: 0.3s;
+    font-family: 'Roboto', sans-serif;
+    box-shadow: inset 0 0 0 1px var(--outline); 
   }
-  .search-wrapper input:focus { border-color: var(--accent); width: 300px; }
-  .search-icon { position: absolute; right: 10px; top: 10px; color: #777; }
+  
+  .search-wrapper input:focus { 
+    border-color: transparent; 
+    box-shadow: inset 0 0 0 2px var(--primary); 
+  }
+
+  .search-icon { position: absolute; right: 10px; top: 10px; color: var(--outline); }
 
   /* --- Ads --- */
   .ad-slot {
-    width: 100%; max-width: 1000px; margin: 20px auto; min-height: 90px;
-    background: #111; border: 1px dashed #333; display: flex; 
-    align-items: center; justify-content: center; color: #555; font-size: 14px;
-    border-radius: 6px;
+    width: 100%; max-width: 1000px; margin: 16px auto; min-height: 80px;
+    background: var(--bg-dark); 
+    border: 1px dashed var(--outline); 
+    display: flex; 
+    align-items: center; justify-content: center; color: var(--outline); 
+    font-size: 14px;
+    border-radius: 12px; 
   }
 
   /* --- Content Area --- */
-  .container { padding: 20px 4%; max-width: 1600px; margin: auto; }
+  .container { padding: 16px 4%; max-width: 1600px; margin: auto; }
   
-  .breadcrumb { display: flex; align-items: center; justify-content: space-between; margin-bottom: 25px; }
-  .section-title { font-size: 24px; font-weight: 700; border-left: 4px solid var(--primary); padding-left: 15px; }
+  .breadcrumb { 
+    display: flex; align-items: center; justify-content: space-between; 
+    margin-bottom: 20px; 
+  }
+  .section-title { 
+    font-size: 22px; font-weight: 500; 
+    padding-left: 0; 
+    color: var(--text);
+  }
   
+  /* --- Back Button Design (Maintained) --- */
   .back-btn {
-    background: transparent; border: 1px solid #444; color: #fff;
-    padding: 6px 20px; border-radius: 4px; cursor: pointer; display: none;
-    transition: 0.3s; font-weight: 600;
+    background: transparent; 
+    border: 1px solid var(--outline); 
+    color: var(--text);
+    padding: 8px 16px; 
+    border-radius: 20px; 
+    cursor: pointer; display: none;
+    transition: background-color 0.3s, color 0.3s; 
+    font-weight: 500;
   }
-  .back-btn:hover { background: var(--primary); border-color: var(--primary); }
+  .back-btn:hover { 
+    /* New Hover Color */
+    background: #0B3A87; 
+    border-color: #0B3A87; 
+    color: #fff; 
+    box-shadow: 0 2px 4px var(--shadow-color);
+  }
 
-  /* --- Grid --- */
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+
+  /* --- Grid & Card --- */
+  .grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
+    gap: 12px; 
+  }
   
+  /* Ensures an element spans all columns inside a .grid container */
+  .grid-full-span {
+    grid-column: 1 / -1; 
+  }
+
   .card {
-    background: var(--bg-card); border-radius: 8px; overflow: hidden;
-    cursor: pointer; transition: all 0.3s ease; border: 1px solid transparent;
+    background: var(--bg-card); 
+    border-radius: 16px; 
+    overflow: hidden;
+    cursor: pointer; 
+    transition: all 0.2s ease; 
+    border: none; 
     position: relative;
+    box-shadow: 0 1px 3px var(--shadow-color); 
   }
-  .card:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+  .card:hover { 
+    transform: translateY(-2px); 
+    box-shadow: 0 4px 8px var(--shadow-color); 
+  }
   
-  .thumb { height: 130px; background-size: cover; background-position: center; position: relative; opacity: 0.8; transition: 0.3s; }
-  .card:hover .thumb { opacity: 1; }
+  .thumb { height: 120px; background-size: cover; background-position: center; position: relative; opacity: 1; transition: 0.3s; }
   
-  .card-info { padding: 15px; }
-  .card-title { font-size: 16px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .card-sub { font-size: 12px; color: #777; margin-top: 5px; }
+  .card-info { padding: 12px; }
+  .card-title { font-size: 14px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .card-sub { font-size: 12px; color: var(--outline); margin-top: 4px; }
 
-  /* --- Player Modal --- */
-  #playerModal {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.95); z-index: 2000; display: none;
-    flex-direction: column; justify-content: center; align-items: center;
+
+  /* --- New Player View Styles --- */
+  #playerView {
+    display: none; 
+    width: 100%;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    overflow: hidden; 
+    position: relative;
   }
   
   #playerWrapper {
-    width: 85%; max-width: 1100px; aspect-ratio: 16/9; background: #000;
-    box-shadow: 0 0 60px rgba(255, 0, 85, 0.1); border: 1px solid #222; position: relative;
+    width: 100%; 
+    max-width: 1100px; 
+    aspect-ratio: 16/9; 
+    background: #000;
+    box-shadow: 0 4px 20px var(--shadow-color); 
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* --- STICKY PLAYER STYLES (FIXED TOP POSITION AND FULL WIDTH) --- */
+  .player-fixed #playerWrapper {
+    position: fixed;
+    top: 84px; /* FIXED: Header Height (10+64+10) = 84px */
+    left: 0; 
+    right: 0; 
+    width: 100%; /* Full viewport width */
+    max-width: none; 
+    transform: none; 
+    z-index: 40; 
+    box-shadow: 0 4px 10px var(--shadow-color);
+  }
+  
+  /* ফিক্সড হলে স্পেসার দেখান */
+  #playerSpacer {
+    display: none; 
+  }
+  .player-fixed #playerSpacer {
+    display: block !important;
   }
 
-  /* Layers */
+  /* Layers for Ad/Main Player */
   #mainPlayer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
   
   #adLayer {
@@ -98,29 +210,72 @@
   }
   #adVideo { width: 100%; height: 100%; object-fit: cover; }
 
-  /* Controls */
-  .close-btn { position: absolute; top: -40px; right: 0; color: #fff; font-size: 30px; cursor: pointer; transition: 0.3s; }
-  .close-btn:hover { color: var(--primary); }
-  
+  /* Controls (Skip Button & Timer) */
   .skip-btn {
-    position: absolute; bottom: 80px; right: 30px;
-    background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.2); color: #fff;
-    padding: 10px 25px; cursor: pointer; font-weight: 700; z-index: 20;
-    display: none; text-transform: uppercase; letter-spacing: 1px;
+    position: absolute; bottom: 30px; right: 30px;
+    background: var(--primary); 
+    border: none; 
+    color: #fff;
+    padding: 10px 25px; 
+    cursor: pointer; 
+    font-weight: 500; 
+    z-index: 20;
+    display: none; 
+    text-transform: uppercase; 
+    letter-spacing: 0.5px;
+    border-radius: 20px; 
+    box-shadow: 0 4px 6px var(--shadow-color);
   }
-  .skip-btn:hover { background: var(--primary); border-color: var(--primary); }
+  .skip-btn:hover { 
+    /* New Hover Color */
+    background: #0B3A87; 
+  }
   
   .timer-badge {
-    position: absolute; bottom: 80px; right: 30px;
-    background: rgba(0,0,0,0.6); color: #ccc; padding: 8px 15px;
-    z-index: 20; border-radius: 4px;
+    position: absolute; bottom: 30px; right: 30px;
+    background: rgba(0,0,0,0.7); 
+    color: #ccc; 
+    padding: 8px 15px;
+    z-index: 20; 
+    border-radius: 10px; 
+    font-weight: 400;
+  }
+  
+  /* --- WATERMARK/LOGO SIZE CONTROL (UPDATED FOR XYFIT/CONTAIN) --- */
+  .clappr-watermark {
+      /* Position */
+      bottom: 10px !important; 
+      right: 10px !important; 
+      z-index: 10; 
+      
+      /* Size Constraints - Responsive */
+      width: auto !important;
+      height: auto !important;
+      
+      /* Use max-width and max-height to ensure the logo is visible and maintains aspect ratio */
+      max-width: 15% !important; /* Max 15% of player width */
+      max-height: 10% !important; /* Max 10% of player height (prevents stretching) */
+      max-width: 120px !important; /* Absolute max width */
+      max-height: 80px !important; /* Absolute max height */
   }
 
+  .clappr-watermark img {
+      /* FIX: This ensures the full image shows and aspect ratio is maintained */
+      width: 100%;
+      height: 100%;
+      object-fit: contain; 
+  }
+
+  /* Responsive Adjustments */
   @media (max-width: 768px) {
-    .grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
-    #playerWrapper { width: 100%; border: none; }
-    .search-wrapper input { width: 150px; }
+    .search-wrapper input { width: 120px; }
+    .nav-links { display: none; } 
+    .grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; }
+    .card { border-radius: 12px; }
+    .clappr-watermark {
+        max-width: 80px !important; /* Smaller size on mobile */
+        max-height: 40px !important; /* Smaller height on mobile */
+    }
   }
 </style>
 </head>
@@ -128,126 +283,224 @@
 
 <nav>
   <a href="/" class="logo">Livetv<span>App</span></a>
+  <div class="nav-links">
+    <a href="/" class="nav-link">Home</a>
+    <a href="/streams" class="nav-link" style="background: rgba(13, 71, 161, 0.2);">Channels</a> <a href="/about" class="nav-link">About</a>
+  </div>
   <div class="search-wrapper">
     <input type="text" id="searchInput" placeholder="Find channels...">
     <i class="fas fa-search search-icon"></i>
   </div>
 </nav>
 
-<div class="ad-slot"><script type="text/javascript">
-	atOptions = {
-		'key' : 'fa36be29858fbb2600610990328422a3',
-		'format' : 'iframe',
-		'height' : 60,
-		'width' : 468,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/fa36be29858fbb2600610990328422a3/invoke.js"></script></div>
+<div class="ad-slot" id="adContainer1">
+  </div>
 
 <div class="container">
   
   <div class="breadcrumb">
     <div class="section-title" id="pageTitle">Browse Categories</div>
-    <button class="back-btn" id="backBtn"><i class="fas fa-chevron-left"></i> Back to Categories</button>
+    <button class="back-btn" id="backBtn"><i class="fas fa-chevron-left"></i> Back</button>
   </div>
   
-  <div class="ad-slot" style="height: 100px; margin-bottom: 30px; max-width: 100%;">
-    <script type="text/javascript">
-	atOptions = {
-		'key' : 'fa36be29858fbb2600610990328422a3',
-		'format' : 'iframe',
-		'height' : 60,
-		'width' : 468,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/fa36be29858fbb2600610990328422a3/invoke.js"></script>
+  <div id="playerView">
+    <div id="playerSpacer" style="display: none;"></div> <div id="playerWrapper">
+      <div id="mainPlayer"></div>
+      
+      <div id="adLayer" style="display:none;">
+        <video id="adVideo" playsinline disablePictureInPicture></video>
+        <div id="adTimer" class="timer-badge">Ad starting...</div>
+        <button class="skip-btn" id="skipBtn">Skip Ad</button>
+      </div>
+    </div>
+    
+    <div class="ad-slot" id="adContainer3" style="margin-top: 20px; max-width: 728px; margin-left: 0; margin-right: auto;">
+      </div>
+    
+    <h2 id="channelInfo" style="margin-top: 20px; font-weight: 500; font-size: 24px;"></h2>
   </div>
+  
+  <div class="ad-slot" id="adContainer2" style="height: 100px; margin-bottom: 30px; max-width: 100%;">
+    </div>
 
   <div class="grid" id="contentGrid">
     </div>
-<script type="text/javascript">
-	atOptions = {
-		'key' : 'fa36be29858fbb2600610990328422a3',
-		'format' : 'iframe',
-		'height' : 60,
-		'width' : 468,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/fa36be29858fbb2600610990328422a3/invoke.js"></script>
-</div>
 
-<div id="playerModal">
-  <div id="playerWrapper">
-    <i class="fas fa-times close-btn" id="closePlayerBtn"></i>
-    
-    <div id="mainPlayer"></div>
-
-
-
-    <div id="adLayer" style="display:none;">
-      <video id="adVideo" playsinline disablePictureInPicture></video>
-      <div id="adTimer" class="timer-badge">Ad starting...</div>
-      <button class="skip-btn" id="skipBtn">Skip Ad</button>
-    </div>
-  </div>
-  
-  <div class="ad-slot" style="margin-top: 20px; max-width: 728px;">
-    <script type="text/javascript">
-	atOptions = {
-		'key' : 'fa36be29858fbb2600610990328422a3',
-		'format' : 'iframe',
-		'height' : 60,
-		'width' : 468,
-		'params' : {}
-	};
-</script>
-<script type="text/javascript" src="//www.highperformanceformat.com/fa36be29858fbb2600610990328422a3/invoke.js"></script>
-  </div>
 </div>
 
 <script>
 window.addEventListener('load', function(){
   // --- SETTINGS ---
-  const AD_VIDEO_URL = "/lv_0_20251123141701.mp4"; 
-  const LOGO_URL = "/logo.png"; 
+  const AD_VIDEO_URL = "/ads/lv_0_20251123141701.mp4"; 
+  const LOGO_URL = "https://lh3.googleusercontent.com/rd-gg-dl/ABS2GSkFJtMYQ_tocNQMKtzW0uuYcX4h-k7Eb7QzTKNL77T76HmzWSOxnYq1AEuFWn7muRKg7J3TSLq8ZAb1t31ahN2w9Jt-Kh_7kJ59SiOP0GKkJ6qqSauhw9eO_NR46IIbOBo_CNxyRDO1HLSuEXVLrhvqXIzXEAcUjhILQtuq0By0I_uoPXmAqhygQmPoSvIwPSoKcqv2n-G8giYbnugRoecu7wxVEAgMtpsmmHWRh1tCMqHnxYciK1xC8HZ_vNp9VZ34DkQ80bA0cke1vt5bxJ0uuyOn9a9D8DSHqMC8LAQQaJ1sRTGUiE_HKUuuIba3Jwtgl-UN2VVl23Y9Cpc_YLOrZWxiyKj6WlfDVnrGXcz2g-Xx6sBREVxy_T9-5ui4otzpOW9LIp725XC3W5SQ0oyxOeOJytyLQR9NIjVOtx9FKzQEAnEJbLdtVZ551K9734GhKEGHud1xdLX2Jj061LFZK1UcUBCvGoj9JLMZdpiF4RULdrM6zSHq2AjvdeomR5jVRuNpoV2m4JLV7JehFeKgDah2kFw3YjzAMxsKQbCtn_Vyfch6o0yRv3zstlCQkfDTGrIweKlMNdjquRyPmP6n7_k1SfLDrz-ImeSqwYdcIor7DCahO4ctOI2ou1rlicxEdcVWUkZ0eXA2X20iTgjHbbkfGO2rjz6VIPZTZtKJjBd1rFIE3wKzGcVdHO0mkA11VfiDJjnKm1aAyl7LtZjqqZA-2iMqaoMBQoBouYqUHSpA1Aszbj1BPryzIddR9PC4zEd0xU82enSh511sOcIlhSRWLOSLH2yETnVwpFzA5hz0iEFj42xiDvmZq2GY-NCH4ZLNYXtp0YqtQ45qVkYT9GUxPdiX5BUM5bBENk_jQP0BdrofgsCnBjO5D4XfffWtXQiIJ-VNJrS1HzvQ2xY1bhsn1md4xm18_yueCeC8e7gTbqxfhJ0S3mH4MVIYRCzTJpjTvJRmqx42AGZEWBsSFkDej04zoZNLLOsGmdMilKbQfE5IijFNJsup6kyFiH53m4phRAD0-YIpBKQXBNX5GUzLPejwOmzkB4sPbbTI3Nkpv5Z8VH3FsZ_acvoOyMOqzjAMIP7rnPIk-h5bglWPDK8_xq6aVPV1scPMKOMb0F3VmoVCSA-TSudxV1Og3wgkgVqw9YKG1kQnwfl1dynRPTkHNoRraVM0KFgZP-yF-D7DEqoLFZrYpQ8t55EdiiycIAFs--WeVvGWcexaJJs10VqshkP2RA_CpNAEOqOpCe2omisW0nbCMcr8sz55q3omD4lC1WjvDCA3wIIzxGCtW7BCa4VHTY2pBgEJx4_M-oFIyJVYiEw6B69X2FwByNYjglhY2orKXCeYZts06R2YPsHnKZuRIkhnwap6sXKgeFij-6RTJ4hueKgh1WbebVz6H3w6xSyN-mv7M4F1DQeHwdK77jW-2Xbyi3-khFRlfCJWH1pDO9XJy8qbBK0SZUiKSxb58rXPSy7D6ORCTcw8PFrHFb5wgmEI754u0zsSs3HPCw=s1024-rj"; 
   const SKIP_TIME = 5;
-
+  
   // --- ELEMENTS ---
   const grid = document.getElementById('contentGrid');
   const backBtn = document.getElementById('backBtn');
   const title = document.getElementById('pageTitle');
   const search = document.getElementById('searchInput');
-  const modal = document.getElementById('playerModal');
-  const closeBtn = document.getElementById('closePlayerBtn');
+  const playerView = document.getElementById('playerView');
+  const channelInfo = document.getElementById('channelInfo');
+  
+  const playerWrapper = document.getElementById('playerWrapper');
+  const playerSpacer = document.getElementById('playerSpacer');
+
   const adLayer = document.getElementById('adLayer');
   const adVideo = document.getElementById('adVideo');
   const skipBtn = document.getElementById('skipBtn');
   const adTimer = document.getElementById('adTimer');
-
+  
   let player = null;
   let allData = [];
   let currentGroupChannels = [];
-  let view = 'groups';
+  let view = 'groups'; 
+  
+  // --- STICKY FIX VARIABLES ---
+  let playerWrapperTop = 0;
+  let playerWrapperInitialHeight = 0;
+  // --- END STICKY FIX VARIABLES ---
+
+
+  // --- AD RELOAD LOGIC ---
+  function injectAdScript(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    
+    container.innerHTML = '';
+    
+    const script1 = document.createElement('script');
+    script1.type = 'text/javascript';
+    script1.innerHTML = `
+        var atOptions = {
+            'key' : 'fa36be29858fbb2600610990328422a3',
+            'format' : 'iframe',
+            'height' : 60,
+            'width' : 468,
+            'params' : {}
+        };
+    `;
+    container.appendChild(script1);
+    
+    const script2 = document.createElement('script');
+    script2.type = 'text/javascript';
+    script2.src = '//www.highperformanceformat.com/fa36be29858fbb2600610990328422a3/invoke.js';
+    container.appendChild(script2);
+  }
+
+  function reloadAds() {
+      injectAdScript('adContainer1');
+      injectAdScript('adContainer2');
+      injectAdScript('adContainer3');
+      
+      console.log('Ad sections pre-loaded/reloaded successfully in the background.');
+  }
+
+  reloadAds(); 
+  setInterval(reloadAds, 60000); 
+
+  // --- STICKY PLAYER LOGIC (FIXED) ---
+  function setPlayerStickyOffset() {
+    if (view === 'player' && playerWrapper.style.display !== 'none') {
+        const playerRect = playerWrapper.getBoundingClientRect();
+        // প্লেয়ারের শুরুর scroll পজিশন এবং তার উচ্চতা সংরক্ষণ করা
+        playerWrapperTop = playerRect.top + window.pageYOffset;
+        playerWrapperInitialHeight = playerRect.height;
+    }
+  }
+
+  window.addEventListener('scroll', function() {
+    if (view === 'player') {
+        const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Header height is 84px. Sticky should engage when playerWrapperTop reaches 84px below the viewport top.
+        if (scrollPosition > (playerWrapperTop - 84)) { 
+            if (!playerView.classList.contains('player-fixed')) {
+                playerSpacer.style.height = `${playerWrapperInitialHeight}px`; 
+                playerView.classList.add('player-fixed');
+            }
+        } else {
+            if (playerView.classList.contains('player-fixed')) {
+                playerView.classList.remove('player-fixed');
+                playerSpacer.style.height = '0'; 
+            }
+        }
+    }
+  });
+
+  window.addEventListener('resize', function() {
+    if (view === 'player') {
+        setPlayerStickyOffset(); 
+        if (playerView.classList.contains('player-fixed')) {
+             playerSpacer.style.height = `${playerWrapperInitialHeight}px`; 
+        }
+    }
+  });
+  // --- END STICKY PLAYER LOGIC ---
+
+
+  // --- HISTORY HANDLER ---
+  window.onpopstate = function(event) {
+      if (player) {
+          player.destroy(); 
+          player = null;
+      }
+      if (adVideo) {
+          adVideo.pause();
+      }
+      
+      if (event.state && event.state.view) {
+          const state = event.state;
+          
+          if (state.view === 'groups') {
+              renderGroups(allData, false); 
+          } else if (state.view === 'channels') {
+              renderChannels(state.data, false); 
+          } 
+          else if (state.view === 'player') {
+            currentGroupChannels = state.groupChannels; 
+            playStream(state.data, false); 
+          }
+      } else {
+          renderGroups(allData, false);
+      }
+  };
+
 
   // --- FETCH ---
   fetch('/data.json')
     .then(res => res.json())
     .then(data => {
       allData = data.groups;
-      renderGroups(allData);
+      history.replaceState({ view: 'groups' }, 'Browse Categories', '#groups');
+      renderGroups(allData, false); 
     })
-    .catch(err => grid.innerHTML = '<div style="color:red;padding:20px;">Error loading data</div>');
+    .catch(err => grid.innerHTML = '<div style="color:red;padding:20px;">Error loading data in the file "new.json"</div>');
 
-  // --- RENDER ---
-  function renderGroups(groups){
+  // --- RENDER VIEWS (CLEANUP ADDED) ---
+  function hideAllViews() {
+      playerView.style.display = 'none';
+  }
+
+  function cleanupPlayerState() {
+      playerView.classList.remove('player-fixed');
+      playerSpacer.style.height = '0'; 
+  }
+  
+  function renderGroups(groups, pushHistory = true){
+    hideAllViews();
     view = 'groups';
     grid.innerHTML = '';
     backBtn.style.display = 'none';
     title.innerText = 'Browse Categories';
     search.value = '';
+    cleanupPlayerState();
+
+    grid.classList.add('grid'); // Ensure grid class is present for categories
+
+    if (pushHistory) {
+        history.pushState({ view: 'groups' }, 'Browse Categories', '#groups');
+    }
 
     groups.forEach(g => {
       const el = document.createElement('div');
@@ -264,13 +517,22 @@ window.addEventListener('load', function(){
     });
   }
 
-  function renderChannels(group){
+  function renderChannels(group, pushHistory = true){
+    hideAllViews();
     view = 'channels';
     currentGroupChannels = group.channels;
     grid.innerHTML = '';
     backBtn.style.display = 'inline-block';
+    backBtn.innerHTML = '<i class="fas fa-chevron-left"></i> Back to Categories';
     title.innerText = group.groupName;
     search.value = '';
+    cleanupPlayerState();
+
+    grid.classList.add('grid'); // Ensure grid class is present for channels
+
+    if (pushHistory) {
+        history.pushState({ view: 'channels', data: group }, group.groupName, `#channels-${group.groupName.replace(/\s/g, '_')}`);
+    }
 
     if(!currentGroupChannels.length) {
       grid.innerHTML = '<div style="color:#666">No channels available.</div>';
@@ -287,48 +549,105 @@ window.addEventListener('load', function(){
           <div class="card-title">${c.name}</div>
           <div class="card-sub">Live TV</div>
         </div>`;
-      el.onclick = () => playStream(c.url);
+      el.onclick = () => playStream(c); 
       grid.appendChild(el);
     });
   }
 
-  // --- SEARCH ---
+  // --- RENDER RELATED CHANNELS (FIXED) ---
+  function renderRelatedChannels(channels) {
+    grid.innerHTML = ''; 
+    grid.classList.add('grid'); // Ensure the grid class is active on the main container
+
+    // 1. The heading must span the entire grid 
+    const heading = document.createElement('h3');
+    heading.className = 'grid-full-span'; // New CSS class applied here
+    heading.style.fontWeight = 500;
+    heading.style.fontSize = '20px';
+    heading.style.marginBottom = '15px';
+    heading.style.marginTop = '20px';
+    heading.innerText = `More Channels in ${title.innerText}`;
+    grid.appendChild(heading); 
+    
+    // 2. Add the channel cards directly to the main grid
+    channels.forEach(c => {
+      const el = document.createElement('div');
+      el.className = 'card';
+      const img = c.img || 'https://via.placeholder.com/300x200/000/333?text=TV';
+      el.innerHTML = `
+        <div class="thumb" style="background-image:url('${img}')"></div>
+        <div class="card-info">
+          <div class="card-title">${c.name}</div>
+          <div class="card-sub">Live TV</div>
+        </div>`;
+      el.onclick = () => playStream(c); 
+      grid.appendChild(el); 
+    });
+  }
+
+
+  // --- SEARCH (অপরিবর্তিত) ---
   search.addEventListener('input', (e) => {
+    if(view === 'player') return; 
+    
     const val = e.target.value.toLowerCase();
     grid.innerHTML = '';
 
-    if(view === 'groups') {
-      const filtered = allData.filter(g => g.groupName.toLowerCase().includes(val));
-      filtered.forEach(g => {
-        const el = document.createElement('div'); el.className = 'card';
-        const img = g.img || '';
-        el.innerHTML = `<div class="thumb" style="background-image:url('${img}')"></div><div class="card-info"><div class="card-title">${g.groupName}</div></div>`;
-        el.onclick = () => renderChannels(g);
-        grid.appendChild(el);
-      });
-    } else {
-      const filtered = currentGroupChannels.filter(c => c.name.toLowerCase().includes(val));
-      filtered.forEach(c => {
-        const el = document.createElement('div'); el.className = 'card';
-        const img = c.img || '';
-        el.innerHTML = `<div class="thumb" style="background-image:url('${img}')"></div><div class="card-info"><div class="card-title">${c.name}</div></div>`;
-        el.onclick = () => playStream(c.url);
-        grid.appendChild(el);
-      });
+    const dataToFilter = view === 'groups' ? allData : currentGroupChannels;
+    
+    if (view === 'groups') {
+        const filtered = dataToFilter.filter(g => g.groupName.toLowerCase().includes(val));
+        filtered.forEach(g => {
+            const el = document.createElement('div'); el.className = 'card';
+            const img = g.img || '';
+            el.innerHTML = `<div class="thumb" style="background-image:url('${img}')"></div><div class="card-info"><div class="card-title">${g.groupName}</div></div>`;
+            el.onclick = () => renderChannels(g);
+            grid.appendChild(el);
+        });
+    } else if (view === 'channels') {
+        const filtered = dataToFilter.filter(c => c.name.toLowerCase().includes(val));
+        filtered.forEach(c => {
+            const el = document.createElement('div'); el.className = 'card';
+            const img = c.img ||'';
+            el.innerHTML = `<div class="thumb" style="background-image:url('${img}')"></div><div class="card-info"><div class="card-title">${c.name}</div></div>`;
+            el.onclick = () => playStream(c);
+            grid.appendChild(el);
+        });
     }
   });
 
-  // --- PLAYER & AD LOGIC ---
-  function playStream(url) {
-    modal.style.display = 'flex';
+  // --- PLAYER VIEW LOGIC (UPDATED) ---
+  function playStream(channel, pushHistory = true) {
+    playerView.style.display = 'block';
+    view = 'player';
     
-    // Ad Setup
+    backBtn.style.display = 'inline-block';
+    backBtn.innerHTML = '<i class="fas fa-chevron-left"></i> Back to Channels';
+    title.innerText = channel.name;
+    channelInfo.innerText = "You are watching: " + channel.name; 
+    
+    if (pushHistory) {
+        history.pushState({ view: 'player', data: channel, groupChannels: currentGroupChannels }, channel.name, `#player-${channel.name.replace(/\s/g, '_')}`);
+    }
+
+    renderRelatedChannels(currentGroupChannels);
+
+    cleanupPlayerState();
+    window.scrollTo(0, 0); 
+    
+    // 100ms পর প্লেয়ারের পজিশন গণনা (DOM স্থির হওয়ার জন্য)
+    setTimeout(setPlayerStickyOffset, 100); 
+
+    // 5. Ad Setup 
     adLayer.style.display = 'flex';
     skipBtn.style.display = 'none';
     adTimer.style.display = 'block';
     adTimer.innerText = "Ad starting...";
     
-    adVideo.src = AD_VIDEO_URL;
+    if(player) { player.destroy(); player = null; }
+    if(adVideo.src !== AD_VIDEO_URL) {
+      adVideo.src = AD_VIDEO_URL;
+    }
     adVideo.volume = 1.0;
     adVideo.play().catch(() => console.log('Autoplay blocked'));
 
@@ -345,14 +664,14 @@ window.addEventListener('load', function(){
       }
     }, 1000);
 
-    // Background Player
-    if(player) { player.destroy(); player = null; }
+    // Background Player (Clappr)
     player = new Clappr.Player({
-      source: url,
+      source: channel.url,
       parentId: '#mainPlayer',
       width: '100%', height: '100%',
       autoPlay: true, mute: true,
-      watermark: LOGO_URL, position: 'top-right',
+      watermark: LOGO_URL, 
+      position: 'bottom-right', 
       playback: { hlsjsConfig: { maxBufferLength: 30 } }
     });
 
@@ -365,16 +684,12 @@ window.addEventListener('load', function(){
 
     adVideo.onended = endAd;
     skipBtn.onclick = endAd;
-
-    closeBtn.onclick = () => {
-      clearInterval(interval);
-      modal.style.display = 'none';
-      adVideo.pause();
-      if(player) { player.destroy(); player = null; }
-    };
   }
-
-  backBtn.onclick = () => renderGroups(allData);
+  
+  // --- CUSTOM BACK BUTTON HANDLER ---
+  document.getElementById('backBtn').onclick = () => {
+      history.back(); 
+  };
 });
 </script>
 </body>
