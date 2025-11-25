@@ -1,198 +1,287 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="google-site-verification" content="0qzH7E0-_acuM9_Sn_HbxeQUk7Ly6Kduc0dkAdCtk9o" />
-<title>Livetvapp - Welcome</title>
+<title>LivetvApp - Home</title>
 
+<script src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
 <style>
+  /* Material 3 Color Palette Simulation (Updated for Deep Blue Theme) */
   :root {
-    --primary: #ff0055;
-    --secondary: #00d2ff;
-    --bg-dark: #050505;
-    --text-main: #ffffff;
-    --glass: rgba(255, 255, 255, 0.05);
+    --primary: #0D47A1;    /* Deep Blue - Primary Action */
+    --accent: #00BCD4;     /* Bright Cyan - Secondary Accent */
+    --bg-dark: #0A1929;    /* Very Dark Navy - Main Background */
+    --bg-card: #1A2C40;    /* Dark Blue Surface - Card Background */
+    --text: #E0F7FA;       /* Light Text */
+    --outline: #546E7A;    /* Muted Blue-Grey - Outline/Subtext */
+    --shadow-color: rgba(0, 0, 0, 0.6);
   }
 
-  body {
-    margin: 0; font-family: 'Rajdhani', sans-serif;
-    background-color: var(--bg-dark);
-    color: var(--text-main);
-    overflow-x: hidden;
+  body { 
+    margin: 0; 
+    font-family: 'Roboto', sans-serif; 
+    background: var(--bg-dark); 
+    color: var(--text); 
+    min-height: 100vh;
   }
 
-  /* --- Navbar --- */
+  /* --- Top App Bar (Navbar) --- */
   nav {
     display: flex; justify-content: space-between; align-items: center;
-    padding: 20px 8%; position: absolute; width: 84%; top: 0; z-index: 10;
+    padding: 10px 4%; 
+    background: var(--bg-card); 
+    position: sticky; top: 0; z-index: 50; /* Header z-index: 50 */
+    box-shadow: 0 2px 4px var(--shadow-color); 
+    min-height: 64px; 
   }
-  .logo { font-size: 28px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; }
-  .logo span { color: var(--primary); }
+  .logo { font-size: 24px; font-weight: 700; color: var(--text); text-decoration: none;}
+  .logo span { color: var(--primary); font-weight: 500;} 
   
-  .nav-btn {
-    background: transparent; border: 1px solid rgba(255,255,255,0.3);
-    color: #fff; padding: 8px 20px; border-radius: 30px; 
-    cursor: pointer; transition: 0.3s; font-weight: 600;
+  .nav-links {
+    display: flex;
+    align-items: center;
+    margin-left: 50px; 
+    flex-grow: 1; 
   }
-  .nav-btn:hover { border-color: var(--primary); color: var(--primary); }
+  .nav-link {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: background 0.2s;
+  }
+  .nav-link:hover {
+    /* Updated Primary Color RGBA */
+    background: rgba(13, 71, 161, 0.2); 
+  }
 
-  /* --- Hero Section --- */
-  .hero {
-    height: 100vh; width: 100%;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.3), #050505), 
-                url('https://wallpapers.com/images/hd/netflix-background-gs7hjuwvv2g0e9fj.jpg'); 
-    background-size: cover; background-position: center;
-    display: flex; flex-direction: column; justify-content: center; align-items: center;
-    text-align: center; padding: 0 20px;
+  .search-wrapper { position: relative; }
+  .search-wrapper input {
+    background: #000000; 
+    border: none; 
+    padding: 10px 40px 10px 15px;
+    border-radius: 24px; 
+    color: var(--text); 
+    width: 250px; 
+    transition: 0.3s;
+    font-family: 'Roboto', sans-serif;
+    box-shadow: inset 0 0 0 1px var(--outline); 
   }
-
-  .hero h1 {
-    font-size: 60px; margin: 0; line-height: 1.1;
-    text-shadow: 0 0 20px rgba(0,0,0,0.8);
-    animation: fadeIn Up 1s ease;
-  }
-  .hero span { color: var(--primary); }
   
-  .hero p {
-    font-size: 20px; max-width: 700px; color: #ccc; margin: 20px 0 40px;
-    animation: fadeIn 1.5s ease;
+  .search-wrapper input:focus { 
+    border-color: transparent; 
+    box-shadow: inset 0 0 0 2px var(--primary); 
   }
 
-  /* Call to Action Button */
-  .cta-btn {
-    background: linear-gradient(45deg, var(--primary), #ff00cc);
-    color: white; border: none; padding: 15px 50px;
-    font-size: 20px; font-weight: 700; border-radius: 50px;
-    cursor: pointer; transition: 0.3s; text-decoration: none;
-    box-shadow: 0 0 20px rgba(255, 0, 85, 0.4);
-    display: inline-flex; align-items: center; gap: 10px;
-  }
-  .cta-btn:hover { transform: scale(1.05); box-shadow: 0 0 40px rgba(255, 0, 85, 0.7); }
+  .search-icon { position: absolute; right: 10px; top: 10px; color: var(--outline); }
 
-  /* --- Features Section --- */
-  .features {
-    padding: 80px 8%; background: #090909;
+  /* --- Ads --- */
+  .ad-slot {
+    width: 100%; max-width: 1000px; margin: 16px auto; min-height: 80px;
+    background: var(--bg-dark); 
+    border: 1px dashed var(--outline); 
+    display: flex; 
+    align-items: center; justify-content: center; color: var(--outline); 
+    font-size: 14px;
+    border-radius: 12px; 
+  }
+
+  /* --- Content Area --- */
+  .container { padding: 16px 4%; max-width: 1600px; margin: auto; }
+  
+  .breadcrumb { 
+    display: flex; align-items: center; justify-content: space-between; 
+    margin-bottom: 20px; 
+  }
+  .section-title { 
+    font-size: 28px; font-weight: 700; 
+    padding-left: 0; 
+    color: var(--text);
+    margin-bottom: 30px;
+  }
+  
+  /* --- Homepage Specific Styles --- */
+  .hero-section {
+    padding: 80px 0;
     text-align: center;
+    /* Updated Gradient */
+    background: linear-gradient(135deg, var(--bg-card) 0%, #0A1420 100%);
+    border-radius: 16px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 15px var(--shadow-color);
   }
-  .section-title { font-size: 32px; margin-bottom: 50px; font-weight: 700; }
-  .section-title span { border-bottom: 3px solid var(--secondary); padding-bottom: 5px; }
+  .hero-section h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin: 0 0 15px;
+    color: var(--text);
+  }
+  .hero-section p {
+    font-size: 18px;
+    color: var(--outline);
+    max-width: 600px;
+    margin: 0 auto 30px;
+  }
+  .primary-btn {
+    background: var(--primary);
+    color: #fff;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 28px;
+    font-weight: 500;
+    transition: background 0.3s, transform 0.2s;
+    display: inline-block;
+  }
+  .primary-btn:hover {
+    /* New Hover Color */
+    background: #0B3A87; 
+    transform: translateY(-2px);
+  }
 
   .feature-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
   }
   .feature-card {
-    background: var(--glass); padding: 40px 20px; border-radius: 15px;
-    border: 1px solid rgba(255,255,255,0.05); transition: 0.3s;
+    background: var(--bg-card);
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 2px 5px var(--shadow-color);
   }
-  .feature-card:hover { transform: translateY(-10px); border-color: var(--secondary); }
-  
-  .icon-box {
-    font-size: 40px; color: var(--secondary); margin-bottom: 20px;
+  .feature-card i {
+    font-size: 32px;
+    color: var(--primary);
+    margin-bottom: 15px;
   }
-  .feature-card h3 { margin: 10px 0; font-size: 22px; }
-  .feature-card p { color: #aaa; font-size: 15px; line-height: 1.6; }
-
-  /* --- App Info / About --- */
-  .about-app {
-    padding: 80px 8%; display: flex; align-items: center; gap: 50px;
-    background: linear-gradient(45deg, #0f0c29, #1a1a2e);
+  .feature-card h4 {
+    margin: 0 0 8px;
+    font-weight: 500;
+    color: var(--text);
   }
-  .about-text { flex: 1; }
-  .about-text h2 { font-size: 40px; margin-bottom: 20px; }
-  .about-text p { color: #ccc; line-height: 1.8; margin-bottom: 30px; }
-  
-  .about-img { flex: 1; text-align: center; }
-  .about-img img { 
-    width: 100%; max-width: 400px; border-radius: 20px; 
-    box-shadow: 0 0 30px rgba(0, 210, 255, 0.2); 
-    border: 2px solid rgba(255,255,255,0.1);
+  .feature-card p {
+    font-size: 14px;
+    color: var(--outline);
   }
 
-  /* --- Footer --- */
-  footer {
-    padding: 40px; text-align: center; background: #000; color: #555;
-    border-top: 1px solid #222;
-  }
-  .social-icons a { color: #fff; margin: 0 10px; font-size: 20px; transition: 0.3s; }
-  .social-icons a:hover { color: var(--primary); }
+  /* Existing Styles for consistency (Hidden Player/Grid are unused here but included for full style block) */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+  .grid-full-span { grid-column: 1 / -1; }
+  .card { background: var(--bg-card); border-radius: 16px; overflow: hidden; cursor: pointer; transition: all 0.2s ease; border: none; position: relative; box-shadow: 0 1px 3px var(--shadow-color); }
+  .back-btn { display: none; }
+  /* Player related styles are not needed here but kept in style block for consistency */
 
-  /* Responsive */
+  /* Responsive Adjustments */
   @media (max-width: 768px) {
-    .hero h1 { font-size: 36px; }
-    .about-app { flex-direction: column; text-align: center; }
-    .nav-btn { display: none; }
+    .search-wrapper input { width: 120px; }
+    .nav-links { display: none; } 
+    .hero-section { padding: 40px 20px; }
+    .hero-section h1 { font-size: 36px; }
+    .section-title { font-size: 24px; }
+    .feature-grid { gap: 15px; }
   }
-
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 </style>
 </head>
 <body>
 
 <nav>
-  <div class="logo">Livetv<span>App</span></div>
-  <button class="nav-btn">Login</button>
+  <a href="/" class="logo">Livetv<span>App</span></a>
+  <div class="nav-links">
+    <a href="/" class="nav-link" style="background: rgba(13, 71, 161, 0.2);">Home</a> <a href="/streams" class="nav-link">Channels</a>
+    <a href="/about" class="nav-link">About</a>
+  </div>
+  <div class="search-wrapper">
+    <input type="text" id="searchInput" placeholder="Find channels...">
+    <i class="fas fa-search search-icon"></i>
+  </div>
 </nav>
 
-<section class="hero">
-  <h1>Unlimited TV, Sports <br> & <span>Live Events</span></h1>
-  <p>Experience buffer-free streaming with our premium IPTV player. Access thousands of channels anytime, anywhere.</p>
-  
-  <a href="/start" class="cta-btn">
-    <i class="fas fa-play"></i> START STREAMING
-  </a>
-</section>
+<div class="ad-slot" id="adContainer1">
+  Advertisement Slot
+</div>
 
-<section class="features">
-  <div class="section-title"><span>Why Choose Us?</span></div>
+<div class="container">
   
+  <div class="hero-section">
+    <h1>Watch Live Streams Anywhere.</h1>
+    <p>LivetvApp brings you the best live TV experience with seamless streaming, no buffering, and a wide range of international channels.</p>
+    <a href="/streams" class="primary-btn"><i class="fas fa-play"></i> Start Browsing Channels</a>
+  </div>
+  
+  <h2 class="section-title" style="text-align: center;">Why Choose LivetvApp?</h2>
+
   <div class="feature-grid">
     <div class="feature-card">
-      <div class="icon-box"><i class="fas fa-bolt"></i></div>
-      <h3>Super Fast</h3>
-      <p>Lightning fast loading speeds with zero buffering technology.</p>
+      <i class="fas fa-broadcast-tower"></i>
+      <h4>HD Quality Streaming</h4>
+      <p>Enjoy crystal clear, high-definition video streams without lag.</p>
     </div>
     <div class="feature-card">
-      <div class="icon-box"><i class="fas fa-tv"></i></div>
-      <h3>Live TV</h3>
-      <p>Access 1000+ local and international TV channels for free.</p>
+      <i class="fas fa-globe"></i>
+      <h4>Global Channel Access</h4>
+      <p>Access hundreds of channels from various categories and regions.</p>
     </div>
     <div class="feature-card">
-      <div class="icon-box"><i class="fas fa-mobile-alt"></i></div>
-      <h3>Responsive</h3>
-      <p>Optimized for all devices including Mobile, Tablet, and Desktop.</p>
+      <i class="fas fa-mobile-alt"></i>
+      <h4>Mobile Friendly</h4>
+      <p>Watch on any device, anywhere. Optimized for mobile viewing.</p>
     </div>
   </div>
-</section>
 
-<section class="about-app">
-  <div class="about-text">
-    <h2>The Ultimate <span style="color:var(--secondary)">IPTV Experience</span></h2>
-    <p>
-      StreamPro is a cutting-edge web-based IPTV solution designed for entertainment lovers. 
-      Whether you are into Live Sports, Breaking News, or Blockbuster Movies, we have it all sorted for you.
-      <br><br>
-      Our advanced HLS player ensures high-quality playback even on slow internet connections. 
-      No installation needed, just click and play!
-    </p>
-    <a href="player.html" class="nav-btn" style="display:inline-block; background:var(--secondary); border:none;">Browse Channels</a>
+  <div class="ad-slot" id="adContainer2" style="height: 100px; margin-bottom: 30px; max-width: 100%;">
+    Another Advertisement Slot
   </div>
-  <div class="about-img">
-    <img src="https://images.unsplash.com/photo-1593784697956-141829e921d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="App Preview">
-  </div>
-</section>
 
-<footer>
-  <div class="social-icons">
-    <a href="#"><i class="fab fa-facebook"></i></a>
-    <a href="#"><i class="fab fa-twitter"></i></a>
-    <a href="#"><i class="fab fa-instagram"></i></a>
-  </div>
-  <p style="margin-top:20px;">&copy; 2024 StreamPro IPTV. All Rights Reserved.</p>
-</footer>
+</div>
 
+<script>
+window.addEventListener('load', function(){
+  // --- AD RELOAD LOGIC (Simplified for non-player pages) ---
+  function injectAdScript(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    
+    container.innerHTML = '';
+    
+    const script1 = document.createElement('script');
+    script1.type = 'text/javascript';
+    script1.innerHTML = `
+        var atOptions = {
+            'key' : 'fa36be29858fbb2600610990328422a3',
+            'format' : 'iframe',
+            'height' : 60,
+            'width' : 468,
+            'params' : {}
+        };
+    `;
+    container.appendChild(script1);
+    
+    const script2 = document.createElement('script');
+    script2.type = 'text/javascript';
+    script2.src = '//www.highperformanceformat.com/fa36be29858fbb2600610990328422a3/invoke.js';
+    container.appendChild(script2);
+  }
+
+  function reloadAds() {
+      injectAdScript('adContainer1');
+      injectAdScript('adContainer2');
+      console.log('Ad sections pre-loaded/reloaded successfully in the background.');
+  }
+
+  reloadAds(); 
+  setInterval(reloadAds, 60000); 
+  
+  // Disable search bar functionality for the index page as it's primarily a landing page
+  document.getElementById('searchInput').disabled = true;
+
+});
+</script>
 </body>
 </html>
