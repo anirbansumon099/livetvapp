@@ -31,21 +31,23 @@
 
   /* --- Top App Bar (Navbar) --- */
   nav {
-    display: flex; justify-content: space-between; align-items: center;
+    display: flex; justify-content: space-between;
+    align-items: center;
     padding: 10px 4%; 
     background: var(--bg-card); 
-    position: sticky; top: 0; z-index: 50; /* Header z-index: 50 */
+    position: sticky; top: 0; z-index: 50;
     box-shadow: 0 2px 4px var(--shadow-color); 
-    min-height: 64px; 
+    min-height: 64px;
   }
   .logo { font-size: 24px; font-weight: 700; color: var(--text); text-decoration: none;}
-  .logo span { color: var(--primary); font-weight: 500;} 
+  .logo span { color: var(--primary);
+    font-weight: 500;} 
   
   .nav-links {
     display: flex;
     align-items: center;
     margin-left: 50px; 
-    flex-grow: 1; 
+    flex-grow: 1;
   }
   .nav-link {
     color: var(--text);
@@ -57,13 +59,13 @@
   }
   .nav-link:hover {
     /* Updated Primary Color RGBA */
-    background: rgba(13, 71, 161, 0.2); 
+    background: rgba(13, 71, 161, 0.2);
   }
 
   .search-wrapper { position: relative; }
   .search-wrapper input {
     background: #000000; 
-    border: none; 
+    border: none;
     padding: 10px 40px 10px 15px;
     border-radius: 24px; 
     color: var(--text); 
@@ -74,29 +76,32 @@
   }
   
   .search-wrapper input:focus { 
-    border-color: transparent; 
+    border-color: transparent;
     box-shadow: inset 0 0 0 2px var(--primary); 
   }
 
-  .search-icon { position: absolute; right: 10px; top: 10px; color: var(--outline); }
+  .search-icon { position: absolute; right: 10px; top: 10px; color: var(--outline);
+  }
 
   /* --- Ads --- */
   .ad-slot {
-    width: 100%; max-width: 1000px; margin: 16px auto; min-height: 80px;
+    width: 100%; max-width: 1000px; margin: 16px auto;
+    min-height: 80px;
     background: var(--bg-dark); 
     border: 1px dashed var(--outline); 
     display: flex; 
     align-items: center; justify-content: center; color: var(--outline); 
     font-size: 14px;
-    border-radius: 12px; 
+    border-radius: 12px;
   }
 
   /* --- Content Area --- */
-  .container { padding: 16px 4%; max-width: 1600px; margin: auto; }
+  .container { padding: 16px 4%; max-width: 1600px; margin: auto;
+  }
   
   .breadcrumb { 
     display: flex; align-items: center; justify-content: space-between; 
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
   }
   .section-title { 
     font-size: 22px; font-weight: 500; 
@@ -106,18 +111,18 @@
   
   /* --- Back Button Design (Maintained) --- */
   .back-btn {
-    background: transparent; 
+    background: transparent;
     border: 1px solid var(--outline); 
     color: var(--text);
     padding: 8px 16px; 
     border-radius: 20px; 
     cursor: pointer; display: none;
-    transition: background-color 0.3s, color 0.3s; 
+    transition: background-color 0.3s, color 0.3s;
     font-weight: 500;
   }
   .back-btn:hover { 
     /* New Hover Color */
-    background: #0B3A87; 
+    background: #0B3A87;
     border-color: #0B3A87; 
     color: #fff; 
     box-shadow: 0 2px 4px var(--shadow-color);
@@ -126,14 +131,14 @@
 
   /* --- Grid & Card --- */
   .grid { 
-    display: grid; 
+    display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); 
     gap: 12px; 
   }
   
   /* Ensures an element spans all columns inside a .grid container */
   .grid-full-span {
-    grid-column: 1 / -1; 
+    grid-column: 1 / -1;
   }
 
   .card {
@@ -141,21 +146,24 @@
     border-radius: 16px; 
     overflow: hidden;
     cursor: pointer; 
-    transition: all 0.2s ease; 
+    transition: all 0.2s ease;
     border: none; 
     position: relative;
     box-shadow: 0 1px 3px var(--shadow-color); 
   }
   .card:hover { 
-    transform: translateY(-2px); 
+    transform: translateY(-2px);
     box-shadow: 0 4px 8px var(--shadow-color); 
   }
   
-  .thumb { height: 120px; background-size: cover; background-position: center; position: relative; opacity: 1; transition: 0.3s; }
+  .thumb { height: 120px; background-size: cover; background-position: center; position: relative;
+    opacity: 1; transition: 0.3s; }
   
   .card-info { padding: 12px; }
-  .card-title { font-size: 14px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .card-sub { font-size: 12px; color: var(--outline); margin-top: 4px; }
+  .card-title { font-size: 14px; font-weight: 500;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .card-sub { font-size: 12px; color: var(--outline); margin-top: 4px;
+  }
 
 
   /* --- New Player View Styles --- */
@@ -169,7 +177,7 @@
   }
   
   #playerWrapper {
-    width: 100%; 
+    width: 100%;
     max-width: 1100px; 
     aspect-ratio: 16/9; 
     background: #000;
@@ -185,7 +193,8 @@
     top: 84px; /* FIXED: Header Height (10+64+10) = 84px */
     left: 0; 
     right: 0; 
-    width: 100%; /* Full viewport width */
+    width: 100%;
+    /* Full viewport width */
     max-width: none; 
     transform: none; 
     z-index: 40; 
@@ -194,25 +203,29 @@
   
   /* ফিক্সড হলে স্পেসার দেখান */
   #playerSpacer {
-    display: none; 
+    display: none;
   }
   .player-fixed #playerSpacer {
     display: block !important;
   }
 
   /* Layers for Ad/Main Player */
-  #mainPlayer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; }
+  #mainPlayer { position: absolute; top: 0; left: 0; width: 100%;
+    height: 100%; z-index: 1; }
   
   #adLayer {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%;
     background: #000; z-index: 10; display: flex; flex-direction: column;
     justify-content: center; align-items: center;
   }
-  #adVideo { width: 100%; height: 100%; object-fit: cover; }
+  #adVideo { width: 100%; height: 100%; object-fit: cover;
+  }
 
   /* Controls (Skip Button & Timer) */
   .skip-btn {
-    position: absolute; bottom: 30px; right: 30px;
+    position: absolute; bottom: 30px;
+    right: 30px;
     background: var(--primary); 
     border: none; 
     color: #fff;
@@ -220,7 +233,7 @@
     cursor: pointer; 
     font-weight: 500; 
     z-index: 20;
-    display: none; 
+    display: none;
     text-transform: uppercase; 
     letter-spacing: 0.5px;
     border-radius: 20px; 
@@ -228,13 +241,13 @@
   }
   .skip-btn:hover { 
     /* New Hover Color */
-    background: #0B3A87; 
+    background: #0B3A87;
   }
   
   .timer-badge {
     position: absolute; bottom: 30px; right: 30px;
     background: rgba(0,0,0,0.7); 
-    color: #ccc; 
+    color: #ccc;
     padding: 8px 15px;
     z-index: 20; 
     border-radius: 10px; 
@@ -244,7 +257,7 @@
   /* --- WATERMARK/LOGO SIZE CONTROL (UPDATED FOR XYFIT/CONTAIN) --- */
   .clappr-watermark {
       /* Position */
-      bottom: 10px !important; 
+      bottom: 10px !important;
       right: 10px !important; 
       z-index: 10; 
       
@@ -253,10 +266,14 @@
       height: auto !important;
       
       /* Use max-width and max-height to ensure the logo is visible and maintains aspect ratio */
-      max-width: 15% !important; /* Max 15% of player width */
-      max-height: 10% !important; /* Max 10% of player height (prevents stretching) */
-      max-width: 120px !important; /* Absolute max width */
-      max-height: 80px !important; /* Absolute max height */
+      max-width: 15% !important;
+      /* Max 15% of player width */
+      max-height: 10% !important;
+      /* Max 10% of player height (prevents stretching) */
+      max-width: 120px !important;
+      /* Absolute max width */
+      max-height: 80px !important;
+      /* Absolute max height */
   }
 
   .clappr-watermark img {
@@ -266,15 +283,33 @@
       object-fit: contain; 
   }
 
+  /* --- FIX: Clappr Video Scaling Issue (Preventing squash/stretch in fullscreen) --- */
+  .clappr-player.fullscreen {
+    /* Fullscreen mode specific adjustments */
+    background-color: #000 !important;
+  }
+  .clappr-player.fullscreen video {
+    /* Ensures the video content maintains aspect ratio and fits within the screen */
+    object-fit: contain !important; 
+    width: 100% !important;
+    height: 100% !important;
+  }
+  /* --- END FIX --- */
+
   /* Responsive Adjustments */
   @media (max-width: 768px) {
-    .search-wrapper input { width: 120px; }
+    .search-wrapper input { width: 120px;
+    }
     .nav-links { display: none; } 
-    .grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; }
-    .card { border-radius: 12px; }
+    .grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 8px; }
+    .card { border-radius: 12px;
+    }
     .clappr-watermark {
-        max-width: 80px !important; /* Smaller size on mobile */
-        max-height: 40px !important; /* Smaller height on mobile */
+        max-width: 80px !important;
+        /* Smaller size on mobile */
+        max-height: 40px !important;
+        /* Smaller height on mobile */
     }
   }
 </style>
@@ -304,7 +339,8 @@
   </div>
   
   <div id="playerView">
-    <div id="playerSpacer" style="display: none;"></div> <div id="playerWrapper">
+    <div id="playerSpacer" style="display: 
+    none;"></div> <div id="playerWrapper">
       <div id="mainPlayer"></div>
       
       <div id="adLayer" style="display:none;">
@@ -314,13 +350,16 @@
       </div>
     </div>
     
-    <div class="ad-slot" id="adContainer3" style="margin-top: 20px; max-width: 728px; margin-left: 0; margin-right: auto;">
+    <div class="ad-slot" id="adContainer3" style="margin-top: 20px;
+    max-width: 728px; margin-left: 0; margin-right: auto;">
       </div>
     
-    <h2 id="channelInfo" style="margin-top: 20px; font-weight: 500; font-size: 24px;"></h2>
+    <h2 id="channelInfo" style="margin-top: 20px;
+    font-weight: 500; font-size: 24px;"></h2>
   </div>
   
-  <div class="ad-slot" id="adContainer2" style="height: 100px; margin-bottom: 30px; max-width: 100%;">
+  <div class="ad-slot" id="adContainer2" style="height: 100px; margin-bottom: 30px;
+    max-width: 100%;">
     </div>
 
   <div class="grid" id="contentGrid">
@@ -348,7 +387,8 @@ window.addEventListener('load', function(){
 
   const adLayer = document.getElementById('adLayer');
   const adVideo = document.getElementById('adVideo');
-  const skipBtn = document.getElementById('skipBtn');
+  const skipBtn = 
+  document.getElementById('skipBtn');
   const adTimer = document.getElementById('adTimer');
   
   let player = null;
@@ -416,18 +456,19 @@ window.addEventListener('load', function(){
         // Header height is 84px. Sticky should engage when playerWrapperTop reaches 84px below the viewport top.
         if (scrollPosition > (playerWrapperTop - 84)) { 
             if (!playerView.classList.contains('player-fixed')) {
-                playerSpacer.style.height = `${playerWrapperInitialHeight}px`; 
+          
+            playerSpacer.style.height = `${playerWrapperInitialHeight}px`; 
                 playerView.classList.add('player-fixed');
             }
         } else {
             if (playerView.classList.contains('player-fixed')) {
                 playerView.classList.remove('player-fixed');
                 playerSpacer.style.height = '0'; 
+    
             }
         }
     }
   });
-
   window.addEventListener('resize', function() {
     if (view === 'player') {
         setPlayerStickyOffset(); 
@@ -442,7 +483,7 @@ window.addEventListener('load', function(){
   // --- HISTORY HANDLER ---
   window.onpopstate = function(event) {
       if (player) {
-          player.destroy(); 
+          player.destroy();
           player = null;
       }
       if (adVideo) {
@@ -451,14 +492,13 @@ window.addEventListener('load', function(){
       
       if (event.state && event.state.view) {
           const state = event.state;
-          
           if (state.view === 'groups') {
-              renderGroups(allData, false); 
+              renderGroups(allData, false);
           } else if (state.view === 'channels') {
-              renderChannels(state.data, false); 
+              renderChannels(state.data, false);
           } 
           else if (state.view === 'player') {
-            currentGroupChannels = state.groupChannels; 
+            currentGroupChannels = state.groupChannels;
             playStream(state.data, false); 
           }
       } else {
@@ -468,7 +508,7 @@ window.addEventListener('load', function(){
 
 
   // --- FETCH ---
-  fetch('/data.json')
+  fetch('/new.json')
     .then(res => res.json())
     .then(data => {
       allData = data.groups;
@@ -476,7 +516,6 @@ window.addEventListener('load', function(){
       renderGroups(allData, false); 
     })
     .catch(err => grid.innerHTML = '<div style="color:red;padding:20px;">Error loading data in the file "new.json"</div>');
-
   // --- RENDER VIEWS (CLEANUP ADDED) ---
   function hideAllViews() {
       playerView.style.display = 'none';
@@ -484,7 +523,7 @@ window.addEventListener('load', function(){
 
   function cleanupPlayerState() {
       playerView.classList.remove('player-fixed');
-      playerSpacer.style.height = '0'; 
+      playerSpacer.style.height = '0';
   }
   
   function renderGroups(groups, pushHistory = true){
@@ -496,7 +535,8 @@ window.addEventListener('load', function(){
     search.value = '';
     cleanupPlayerState();
 
-    grid.classList.add('grid'); // Ensure grid class is present for categories
+    grid.classList.add('grid');
+    // Ensure grid class is present for categories
 
     if (pushHistory) {
         history.pushState({ view: 'groups' }, 'Browse Categories', '#groups');
@@ -512,6 +552,7 @@ window.addEventListener('load', function(){
           <div class="card-title">${g.groupName}</div>
           <div class="card-sub">${g.channels ? g.channels.length : 0} Channels</div>
         </div>`;
+    
       el.onclick = () => renderChannels(g);
       grid.appendChild(el);
     });
@@ -528,7 +569,8 @@ window.addEventListener('load', function(){
     search.value = '';
     cleanupPlayerState();
 
-    grid.classList.add('grid'); // Ensure grid class is present for channels
+    grid.classList.add('grid');
+    // Ensure grid class is present for channels
 
     if (pushHistory) {
         history.pushState({ view: 'channels', data: group }, group.groupName, `#channels-${group.groupName.replace(/\s/g, '_')}`);
@@ -549,7 +591,8 @@ window.addEventListener('load', function(){
           <div class="card-title">${c.name}</div>
           <div class="card-sub">Live TV</div>
         </div>`;
-      el.onclick = () => playStream(c); 
+      el.onclick = 
+      () => playStream(c); 
       grid.appendChild(el);
     });
   }
@@ -557,7 +600,8 @@ window.addEventListener('load', function(){
   // --- RENDER RELATED CHANNELS (FIXED) ---
   function renderRelatedChannels(channels) {
     grid.innerHTML = ''; 
-    grid.classList.add('grid'); // Ensure the grid class is active on the main container
+    grid.classList.add('grid');
+    // Ensure the grid class is active on the main container
 
     // 1. The heading must span the entire grid 
     const heading = document.createElement('h3');
@@ -567,8 +611,7 @@ window.addEventListener('load', function(){
     heading.style.marginBottom = '15px';
     heading.style.marginTop = '20px';
     heading.innerText = `More Channels in ${title.innerText}`;
-    grid.appendChild(heading); 
-    
+    grid.appendChild(heading);
     // 2. Add the channel cards directly to the main grid
     channels.forEach(c => {
       const el = document.createElement('div');
@@ -579,6 +622,7 @@ window.addEventListener('load', function(){
         <div class="card-info">
           <div class="card-title">${c.name}</div>
           <div class="card-sub">Live TV</div>
+      
         </div>`;
       el.onclick = () => playStream(c); 
       grid.appendChild(el); 
@@ -598,7 +642,8 @@ window.addEventListener('load', function(){
     if (view === 'groups') {
         const filtered = dataToFilter.filter(g => g.groupName.toLowerCase().includes(val));
         filtered.forEach(g => {
-            const el = document.createElement('div'); el.className = 'card';
+            const el = document.createElement('div'); 
+            el.className = 'card';
             const img = g.img || '';
             el.innerHTML = `<div class="thumb" style="background-image:url('${img}')"></div><div class="card-info"><div class="card-title">${g.groupName}</div></div>`;
             el.onclick = () => renderChannels(g);
@@ -606,8 +651,10 @@ window.addEventListener('load', function(){
         });
     } else if (view === 'channels') {
         const filtered = dataToFilter.filter(c => c.name.toLowerCase().includes(val));
+    
         filtered.forEach(c => {
-            const el = document.createElement('div'); el.className = 'card';
+            const el = document.createElement('div');
+            el.className = 'card';
             const img = c.img ||'';
             el.innerHTML = `<div class="thumb" style="background-image:url('${img}')"></div><div class="card-info"><div class="card-title">${c.name}</div></div>`;
             el.onclick = () => playStream(c);
@@ -636,15 +683,15 @@ window.addEventListener('load', function(){
     window.scrollTo(0, 0); 
     
     // 100ms পর প্লেয়ারের পজিশন গণনা (DOM স্থির হওয়ার জন্য)
-    setTimeout(setPlayerStickyOffset, 100); 
-
+    setTimeout(setPlayerStickyOffset, 100);
     // 5. Ad Setup 
     adLayer.style.display = 'flex';
     skipBtn.style.display = 'none';
     adTimer.style.display = 'block';
     adTimer.innerText = "Ad starting...";
     
-    if(player) { player.destroy(); player = null; }
+    if(player) { player.destroy(); player = null;
+    }
     if(adVideo.src !== AD_VIDEO_URL) {
       adVideo.src = AD_VIDEO_URL;
     }
@@ -663,7 +710,6 @@ window.addEventListener('load', function(){
         skipBtn.style.display = 'block';
       }
     }, 1000);
-
     // Background Player (Clappr)
     player = new Clappr.Player({
       source: channel.url,
@@ -674,12 +720,32 @@ window.addEventListener('load', function(){
       position: 'bottom-right', 
       playback: { hlsjsConfig: { maxBufferLength: 30 } }
     });
-
+    
+    // --- NEW: Fullscreen Orientation Hint (for supporting browsers) ---
+    player.on(Clappr.Events.PLAYER_FULLSCREEN, (isFullScreen) => {
+        if (isFullScreen) {
+            // Attempt to request landscape orientation when entering fullscreen
+            if (screen.orientation && screen.orientation.lock) {
+                // Try locking to landscape (standard API)
+                screen.orientation.lock('landscape').catch(err => {
+                    console.log('Orientation lock failed (may not be supported or required permission):', err);
+                });
+            }
+        } else {
+            // Unlock orientation when exiting fullscreen
+            if (screen.orientation && screen.orientation.unlock) {
+                screen.orientation.unlock();
+            }
+        }
+    });
+    // --- END NEW FULLSCREEN LOGIC ---
+    
     const endAd = () => {
       clearInterval(interval);
       adVideo.pause();
       adLayer.style.display = 'none';
-      if(player) { player.setVolume(100); if(!player.isPlaying()) player.play(); }
+      if(player) { player.setVolume(100);
+        if(!player.isPlaying()) player.play(); }
     };
 
     adVideo.onended = endAd;
@@ -688,7 +754,7 @@ window.addEventListener('load', function(){
   
   // --- CUSTOM BACK BUTTON HANDLER ---
   document.getElementById('backBtn').onclick = () => {
-      history.back(); 
+      history.back();
   };
 });
 </script>
