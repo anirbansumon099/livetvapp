@@ -72,10 +72,12 @@ app.post("/decode", (req, res) => {
 });
 
 app.get("/*", (req,res)=>{
-res.send(`<h1>NOT FOUND </h1> <strong>চেষ্টা করলে অবশ্যই সফল হওয়া যায়।</strong><br>
+/*res.send(`<h1>NOT FOUND </h1> <strong>চেষ্টা করলে অবশ্যই সফল হওয়া যায়।</strong><br>
 <strong>If you try, you can definitely succeed.</strong><br>
 <strong>Agar prayaas kiya jaaye, to nishchit roop se safalta milti hai.</strong><br>
-`);
+`);*/
+
+ res.render("error.ejs");
 
 });
 // Start server
