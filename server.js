@@ -34,6 +34,14 @@ app.get("/start",(req,res)=>{
  res.render("start.ejs");
 });
 
+app.get("/about",(req,res)=>{
+res.render("about.ejs");
+
+ 
+});
+
+
+
 
 app.post("/generate", (req, res) => {
     const num = parseInt(req.body.number);
