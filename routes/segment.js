@@ -29,10 +29,10 @@ const commonHeaders = {
    "Sec-Fetch-Site": "same-origin",
     "Sec-Fetch-Dest": "empty",
 
-    "Host": "allinonereborn.online",
+    "Host": "allinonereborn.xyz",
     "Accept": "*/*",
     "Accept-Language": "en-US,en;q=0.5",
-    "Referer": "https://allinonereborn.online/airteltv-web/player.html",
+    "Referer": "https://allinonereborn.xyz/airteltv-web/player.html",
     "Connection": "keep-alive"
 };
 
